@@ -1,0 +1,2018 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Hapus link font lama jika bentrok, lalu tambahkan ini -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <!-- Tailwind CDN (bisa ditaruh di akhir head, atau pakai versi build kalau production) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Swiper (opsional, kalau mau pakai carousel seperti contoh) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <title>ELEGANTRY TOUR & TRAVEL — Umroh Visioner</title>
+  <style>
+    :root {
+      color-scheme: dark;
+
+      --gold-dark: #B8860B;
+      --dark: #0A0A0A;
+      --glass: rgba(255, 255, 255, 0.05);
+
+      --black: #0a0a0d;
+      --graphite: #17171d;
+      --gold: #caa553;
+      --gold-soft: #f3d48a;
+      --white: #f8f8f8;
+      --gray: #9a9aa3;
+      --accent: #2a2a33;
+      --success: #24d18f;
+      --danger: #ff5d5d;
+      --glow: 0 18px 40px rgba(202, 165, 83, 0.2);
+
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --glass-highlight: rgba(255, 255, 255, 0.08);
+      --shadow-strong: 0 30px 60px rgba(0, 0, 0, 0.45);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Manrope", "Inter", system-ui, sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top, rgba(202, 165, 83, 0.16), transparent 50%),
+                  linear-gradient(120deg, #09090c, #101017 40%, #181821 100%);
+      color: var(--white);
+      min-height: 100vh;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button { font-family: inherit; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      backdrop-filter: blur(16px);
+      background: rgba(9, 9, 12, 0.88);
+      border-bottom: 1px solid rgba(202, 165, 83, 0.2);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;   /* logo kiri - sisanya kanan */
+      padding: 1.1rem 5vw;
+      max-width: 1400px;
+      margin: 0 auto;
+      gap: 1.5rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: left;
+      gap: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-size: 1.1rem;
+    }
+
+    .brand .logo {
+      width: 42px;
+      height: 42px;
+      place-items: center;
+      color: #1c1405;
+      font-weight: 900;
+      box-shadow: var(--glow);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      font-size: 0.95rem;
+      color: var(--gray);
+    }
+
+    .nav-links a {
+      position: relative;
+      padding-bottom: 0.3rem;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gold);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--gold-soft);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .cta-btn {
+      background: linear-gradient(135deg, var(--gold), var(--gold-soft));
+      color: #1c1405;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      border-radius: 999px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: var(--glow);
+      transition: transform 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    /* Mobile nav */
+    @media (max-width: 960px) {
+      .nav {
+        padding: 1rem 4vw;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .brand .logo {
+        width: 38px;
+        height: 38px;
+      }
+    }
+
+    main {
+      padding: 2rem 5vw;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    section {
+      padding: 4rem 0;
+    }
+
+    .section-title {
+      margin-top: 35px;
+      margin-bottom: 2.5rem;
+      text-align: center;
+    }
+
+    .section-title h2 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      margin-bottom: 0.8rem;
+    }
+
+    .section-title p {
+      color: var(--gray);
+      max-width: 720px;
+      margin: 0 auto;
+      font-size: 1.05rem;
+    }
+
+    .view { display: none; }
+    .view.view-active { display: block; margin-top: -40px; }
+
+    .hero {
+      padding-top: 0rem;
+      display: grid;
+      gap: 2.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      align-items: center;
+    }
+
+    .hero h1 {
+      margin-top: 20px;
+      font-size: clamp(2.3rem, 3vw + 1.4rem, 4.2rem);
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      font-family: 'Cinzel Decorative', serif;
+      font-weight: 500;
+    }
+
+    .hero p {
+      color: var(--gray);
+      font-size: 1.05rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    /* Tombol hero saat active */
+    .hero-actions button[data-view].active {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(202, 165, 83, 0.45);
+    }
+
+    /* Khusus cta-btn active */
+    .hero-actions .cta-btn.active {
+      background: linear-gradient(135deg, #f3d48a, #caa553);
+      color: #1c1405;
+      border: none;
+    }
+
+    /* Khusus ghost-btn active */
+    .hero-actions .ghost-btn.active {
+      border-color: var(--gold-soft);
+      background: rgba(202, 165, 83, 0.15);
+      color: var(--gold-soft);
+    }
+
+    .ghost-btn {
+      background: transparent;
+      color: var(--white);
+      border: 1px solid rgba(202, 165, 83, 0.6);
+      padding: 0.7rem 1.4rem;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: border-color 0.2s ease;
+    }
+
+    .ghost-btn:hover {
+      border-color: var(--gold-soft);
+    }
+
+    /* Logo mobile - hanya di mobile, di tengah atas hero section Beranda */
+    .mobile-logo {
+      display: none;                    /* default hidden */
+      justify-content: center;
+      margin-bottom: 2rem;            /* jarak ke konten bawahnya */
+      padding: 1rem 0;
+    }
+
+    .mobile-logo img {
+      width: 240px !important;   /* lebih besar lagi */
+      height: auto !important;
+      max-width: 85vw !important;
+      filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.7));
+      transition: transform 0.6s ease, box-shadow 0.6s ease;
+    }
+
+    /* Animasi masuk elegan saat load/refresh */
+    @keyframes logoFadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(40px) scale(0.2);
+        filter: blur(6px);
+        box-shadow: 0 0 0 rgba(202, 165, 83, 0);
+      }
+      40% {
+        opacity: 0.4;
+        transform: translateY(10px) scale(0.98);
+        filter: blur(2px);
+      }
+      70% {
+        opacity: 1;
+        transform: translateY(2px) scale(1.1);
+        filter: blur(0);
+      }
+      100% {
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @media (max-width: 960px) {
+      .mobile-logo {
+        display: flex !important;
+      }
+
+      .mobile-logo img {
+        animation: logoFadeIn 3s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+        animation-delay: 0.9s;          /* sedikit delay agar muncul setelah background */
+      }
+
+      /* Optional: efek hover/glow di mobile */
+      .mobile-logo img:hover {
+        transform: scale(1.08);
+        transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+
+      .hero h1 {
+        margin-top: 20px;
+        font-size: 40px;
+        font-family: 'Cinzel Decorative', serif;
+        font-weight: 500;
+      }
+    }
+
+    .hero-panel {
+      background: rgba(18, 18, 25, 0.85);
+      border: 1px solid rgba(202, 165, 83, 0.2);
+      border-radius: 26px;
+      padding: 2rem;
+      display: grid;
+      gap: 1.2rem;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-panel .stat {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.8rem 0;
+      border-bottom: 1px solid rgba(202, 165, 83, 0.2);
+    }
+
+    .hero-panel .stat:last-child { border-bottom: none; }
+
+    .pill {
+      background: rgba(202, 165, 83, 0.15);
+      color: var(--gold-soft);
+      padding: 0.25rem 0.8rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .feature-grid {
+      display: grid;
+      gap: 1.4rem;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .feature-card {
+      background: var(--graphite);
+      border-radius: 18px;
+      padding: 1.4rem;
+      border: 1px solid rgba(202, 165, 83, 0.2);
+      display: grid;
+      gap: 0.7rem;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--glow);
+    }
+
+    .feature-card h3 { font-size: 1rem; }
+    .feature-card p {
+      color: var(--gray);
+      font-size: 0.85rem;
+    }
+
+    .home-grid {
+      display: grid;
+      gap: 1.6rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+
+    .clock-card {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 1.4rem;
+      display: grid;
+      gap: 0.6rem;
+      box-shadow: var(--shadow-strong);
+      backdrop-filter: blur(24px);
+      text-align: center;
+    }
+
+    .clock-main {
+      font-size: 2.2rem;
+      font-weight: 700;
+      text-align: center;
+      letter-spacing: 0.1em;
+    }
+
+    .digital-small {
+      font-size: 0.85rem;
+      color: var(--gray);
+      text-align: center;
+    }
+
+    /* Hilangkan scrollbar tapi tetap bisa discroll (cross-browser) */
+    .scrollbar-hide {
+      -ms-overflow-style: none;       /* IE & Edge */
+      scrollbar-width: none;          /* Firefox */
+      margin-bottom: 20px;
+    }
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;                  /* Chrome, Safari, Edge baru */
+    }
+
+    /* Styling kapsul aktif */
+    .filter-pill.active {
+      background: rgba(202, 165, 83, 0.25) !important;
+      color: var(--gold-soft) !important;
+      border-color: var(--gold) !important;
+      font-weight: 600;
+    }
+
+    /* Biar lebih mulus saat scroll (opsional) */
+    .snap-x {
+      scroll-snap-type: x mandatory;
+    }
+    .snap-start {
+      scroll-snap-align: start;
+    }
+
+    .program-tools {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      margin-bottom: 1.5rem;
+      background: rgba(18, 18, 25, 0.7);
+      border-radius: 18px;
+      padding: 1rem;
+      border: 1px solid rgba(202, 165, 83, 0.15);
+    }
+
+    .program-tools label {
+      font-size: 0.8rem;
+      color: var(--gray);
+    }
+
+    .program-tools input {
+      margin-top: 0.3rem;
+      width: 100%;
+      background: #0d0d12;
+      border: 1px solid rgba(202, 165, 83, 0.2);
+      color: var(--white);
+      padding: 0.55rem 0.8rem;
+      border-radius: 10px;
+    }
+
+    .program-grid {
+      display: grid;
+      gap: 1.4rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+
+    .program-card {
+      background: rgba(16, 16, 22, 0.9);
+      border-radius: 18px;
+      border: 1px solid rgba(202, 165, 83, 0.2);
+      overflow: hidden;
+      display: grid;
+      gap: 0.8rem;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .program-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--glow);
+    }
+
+    .program-image {
+      width: 100%;
+      aspect-ratio: 4 / 1;
+      object-fit: cover;
+      background: linear-gradient(135deg, rgba(202, 165, 83, 0.2), rgba(255, 255, 255, 0.05));
+    }
+
+    .program-body {
+      padding: 0 1.2rem 1.2rem;
+      display: grid;
+      gap: 0.6rem;
+    }
+
+    .program-meta {
+      color: var(--gray);
+      font-size: 0.85rem;
+    }
+
+    .tag-row {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+
+    .tag-row span {
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(202, 165, 83, 0.15);
+      color: var(--gold-soft);
+      font-size: 0.75rem;
+    }
+
+    .card-actions {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.6rem;
+    }
+
+    .icon-btn {
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      padding: 0.45rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(202, 165, 83, 0.2);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--white);
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .icon-btn svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .icon-btn:hover {
+      border-color: var(--gold-soft);
+      background: rgba(202, 165, 83, 0.2);
+    }
+
+    .gallery-grid {
+      display: grid;
+      gap: 1.2rem;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(202, 165, 83, 0.2);
+      background: #0f0f16;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-item:hover { transform: scale(1.02); }
+
+    .gallery-item img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 40%, rgba(0, 0, 0, 0.8) 100%);
+      display: flex;
+      align-items: flex-end;
+      padding: 1rem;
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    /* About Section */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;           /* 2 kolom di desktop */
+      gap: 2.5rem;
+      align-items: start;
+    }
+
+    .contact-card,
+    .founder-card {
+      background: rgba(18, 18, 25, 0.88);
+      border: 1px solid rgba(202, 165, 83, 0.18);
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .contact-card:hover,
+    .founder-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--glow);
+    }
+
+    .contact-card h3,
+    .founder-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 1.2rem;
+      color: var(--gold-soft);
+      text-align: center;
+    }
+
+    .founder-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1rem;
+    }
+
+    .founder-photo {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(202, 165, 83, 0.8), rgba(243, 212, 138, 0.6));
+      display: grid;
+      place-items: center;
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: #1c1405;
+      box-shadow: 0 8px 20px rgba(202, 165, 83, 0.3);
+    }
+
+    .founder-card strong {
+      font-size: 1.25rem;
+      color: var(--white);
+    }
+
+    .founder-card p {
+      color: var(--gray);
+      font-size: 0.95rem;
+      max-width: 320px;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+
+    .tag-row span {
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      background: rgba(202, 165, 83, 0.12);
+      color: var(--gold-soft);
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    /* Form di contact card */
+    .form-grid {
+      display: grid;
+      gap: 1.2rem;
+    }
+
+    .form-grid input,
+    .form-grid select,
+    .form-grid textarea {
+      width: 100%;
+      padding: 1rem 1.2rem;
+      border-radius: 12px;
+      border: 1px solid rgba(202, 165, 83, 0.25);
+      background: #0f0f16;
+      color: white;
+      font-size: 1rem;
+      transition: border-color 0.2s ease;
+    }
+
+    .form-grid input:focus,
+    .form-grid select:focus,
+    .form-grid textarea:focus {
+      outline: none;
+      border-color: var(--gold-soft);
+      box-shadow: 0 0 0 3px rgba(202, 165, 83, 0.15);
+    }
+
+    .form-grid textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    /* Responsif mobile */
+    @media (max-width: 960px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .founder-content {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .contact-card,
+      .founder-card {
+        padding: 1.6rem;
+      }
+    }
+
+    footer {
+      padding: 2.5rem 6vw 6rem;
+      border-top: 1px solid rgba(202, 165, 83, 0.2);
+      color: var(--gray);
+    }
+
+/* Bottom Nav - Modern Glassmorphism + Beranda Tengah Unik */
+
+  .bottom-nav {
+    display: none;
+  }
+
+@media (max-width: 960px) {
+  .bottom-nav {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 68px;                    /* sedikit lebih tinggi agar elegan */
+    background: rgba(18, 18, 25, 0.78);
+    backdrop-filter: blur(32px);     /* glassmorphism kuat */
+    -webkit-backdrop-filter: blur(32px);
+    border-top: 1px solid var(--glass-border);
+    border-radius: 24px 24px 0 0;    /* rounded atas */
+    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.5);
+    padding: 0 1.2rem;
+    z-index: 1500;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  .bottom-nav a {
+    flex: 1;
+    max-width: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--gray);
+    text-align: center;
+    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+    margin-top: 10px;
+  }
+
+  /* Beranda di tengah - unik & menonjol */
+  .bottom-nav a[data-view="beranda"] {
+    transform: translateY(-8px);     /* diangkat lebih tinggi */
+    z-index: 2;
+  }
+
+  .bottom-nav a[data-view="beranda"] .bottom-icon {
+    width: 40px;                     /* lebih besar dari yang lain */
+    height: 40px;
+    border-radius: 999px;
+    background: linear-gradient(145deg, rgba(202, 165, 83, 0.25), rgba(243, 212, 138, 0.15));
+    border: 2px solid rgba(202, 165, 83, 0.4);
+    box-shadow: 0 8px 25px rgba(202, 165, 83, 0.35),
+                inset 0 2px 8px rgba(255,255,255,0.08);
+    backdrop-filter: blur(12px);
+    transform: scale(1.1);
+    transition: all 0.4s ease;
+  }
+
+  .bottom-nav a[data-view="beranda"].active .bottom-icon {
+    transform: scale(1.25) translateY(-4px);
+    box-shadow: 0 12px 35px rgba(202, 165, 83, 0.55),
+                0 0 0 4px rgba(202, 165, 83, 0.18);
+  }
+
+  /* Item lain lebih ramping & elegan */
+  .bottom-nav a:not([data-view="beranda"]) .bottom-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 16px;
+    background: rgba(202, 165, 83, 0.08);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+  }
+
+  .bottom-nav a.active:not([data-view="beranda"]) .bottom-icon {
+    background: rgba(202, 165, 83, 0.25);
+    border-color: var(--gold-soft);
+    transform: translateY(-6px) scale(1.08);
+    box-shadow: 0 10px 25px rgba(202, 165, 83, 0.3);
+  }
+
+  .bottom-nav a.active {
+    color: var(--gold-soft);
+    font-weight: 600;
+  }
+
+  .bottom-nav a.active::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    width: 32px;
+    height: 3px;
+    background: var(--gold);
+    border-radius: 999px;
+    box-shadow: 0 2px 12px rgba(202, 165, 83, 0.4);
+    animation: pulse 2s infinite;
+  }
+
+  .bottom-icon {
+    display: grid;
+    place-items: center;
+  }
+
+  .bottom-icon svg {
+    width: 15px;
+    height: 15px;
+    transition: transform 0.4s ease;
+  }
+
+  .bottom-nav a:hover .bottom-icon svg {
+    transform: scale(1.15);
+  }
+
+  /* Tanya tetap punya pulse tapi lebih subtle */
+  .bottom-nav a.pulse .bottom-icon {
+    animation: gentlePulse 3s infinite ease-in-out;
+  }
+
+  @keyframes gentlePulse {
+    0%, 100% { transform: scale(1); opacity: 0.9; }
+    50%      { transform: scale(1.08); opacity: 1; }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.5; }
+    50%      { opacity: 1; }
+  }
+}
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(7, 7, 10, 0.8);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      padding: 1.5rem;
+    }
+
+    .modal.active { display: flex; }
+
+    .modal-content {
+      max-width: 760px;
+      width: 100%;
+      background: #121218;
+      border-radius: 24px;
+      padding: 2rem;
+      border: 1px solid rgba(202, 165, 83, 0.2);
+      display: grid;
+      gap: 1rem;
+    }
+
+    .modal-content h3 { font-size: 1.6rem; }
+
+    .modal-grid {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .chip {
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(202, 165, 83, 0.15);
+      font-size: 0.75rem;
+      color: var(--gold-soft);
+      display: inline-block;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 6rem;
+      right: 2rem;
+      background: rgba(20, 20, 26, 0.95);
+      border: 1px solid rgba(202, 165, 83, 0.2);
+      padding: 0.9rem 1.1rem;
+      border-radius: 14px;
+      color: var(--white);
+      box-shadow: var(--glow);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.3s ease;
+      pointer-events: none;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 960px) {
+      header { position: static; }
+      .nav { padding: 0.8rem 6vw; }
+      .brand .logo {
+        width: 40px;
+        height: 40px;
+      }
+      .nav-links { display: none; }
+      footer { padding-bottom: 7rem; }
+
+      .bottom-nav {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(9, 9, 12, 0.95);
+        border-top: 1px solid rgba(202, 165, 83, 0.2);
+        padding: 0.4rem 1rem 0.8rem;
+        backdrop-filter: blur(18px);
+        z-index: 1500;
+      }
+    }
+
+    .glass-shell {
+      background: rgba(19, 19, 26, 0.6);
+      border: 1px solid var(--glass-border);
+      border-radius: 26px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow-strong);
+      backdrop-filter: blur(28px);
+    }
+
+    .glass-highlight {
+      border: 1px solid var(--glass-highlight);
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 20px;
+      padding: 1.2rem;
+    }
+
+    .icon-inline {
+      width: 18px;
+      height: 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Tambahan untuk cegah lompat saat fokus input */
+    input:focus,
+    select:focus,
+    textarea:focus {
+      scroll-behavior: auto !important;
+      outline: none;
+    }
+
+    html, body {
+      scroll-behavior: smooth;
+    }
+
+    .font-cinzel { font-family: 'Cinzel', serif; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--dark);
+      color: white;
+    }
+
+    .gold-gradient {
+      background: linear-gradient(135deg, #D4AF37 0%, #F4DF4E 50%, #B8860B 100%);
+      background-clip: text;
+      -webkit-background-clip: text;  /* fallback untuk browser lama */
+      -webkit-text-fill-color: transparent;
+    }
+
+    .card-exclusive {
+      background: var(--glass);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--glass-border);
+      border-radius: 15px;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-exclusive:hover {
+      transform: translateY(-10px);
+      border-color: var(--gold);
+      box-shadow: 0 10px 30px rgba(212, 175, 55, 0.15);
+    }
+
+    .card-exclusive img {
+      height: 12rem; /* 192px, sama seperti contoh */
+      object-fit: cover;
+      opacity: 0.8;
+    }
+
+    /* Modal style persis seperti contoh */
+    #detailModal .modal-content {
+      background: var(--glass);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--gold);
+      border-radius: 15px;
+      max-width: 42rem; /* ~672px, mirip max-w-2xl */
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      padding: 2rem;
+    }
+
+    /* Hilangkan scrollbar default di modal */
+    #detailModal .modal-content::-webkit-scrollbar { display: none; }
+    #detailModal .modal-content { scrollbar-width: none; -ms-overflow-style: none; }
+  
+    .social-icons a {
+      text-decoration: none;
+    }
+
+    .social-icons i:hover {
+      transform: scale(1.2);           /* membesar saat di-hover */
+      color: var(--gold);              /* warna gold lebih tua saat hover */
+      transition: all 0.3s ease;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <!-- Logo di pojok kiri (selalu di kiri, baik desktop maupun mobile) -->
+      <div class="brand flex items-center">
+        <img src="/assets/logo.png" alt="Elegantry Logo" class="h-10 w-auto object-contain md:h-12">
+      </div>
+
+      <!-- Menu navigasi - hanya muncul di desktop -->
+      <nav class="nav-links hidden md:flex items-center gap-8 mx-auto">
+        <a href="#beranda" class="nav-link" data-view="beranda">Beranda</a>
+        <a href="#program" class="nav-link" data-view="program">Program</a>
+        <a href="#galeri" class="nav-link" data-view="galeri">Galeri</a>
+        <a href="#about" class="nav-link" data-view="about">About</a>
+      </nav>
+
+      <!-- Tombol Konsultasi - hanya muncul di desktop -->
+      <button 
+        class="cta-btn hidden md:block px-6 py-3 text-base font-semibold"
+        onclick="document.getElementById('kontak').scrollIntoView({behavior:'smooth'})"
+      >
+        Konsultasi
+      </button>
+
+      <!-- Tombol Konsultasi WA - hanya muncul di mobile, di pojok kanan -->
+      <a 
+        href="https://wa.me/6285880856341?text=Halo%20ELEGANTRY%2C%20saya%20ingin%20konsultasi%20umroh" 
+        class="cta-btn md:hidden flex items-center gap-2 px-5 py-2.5 text-sm font-semibold shadow-lg"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <i class="fa-brands fa-whatsapp text-lg"></i>
+        Konsultasi
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <section class="view view-active" id="beranda" data-view="beranda">
+      <div class="hero">
+            <!-- Logo mobile only - tampil di paling atas mobile, hidden di desktop -->
+            <div class="mobile-logo" style="display: none; align-items: center;">
+              <img src="/assets/logoban.png" alt="Elegantry Logo" style="width: 120px; height: auto;">
+            </div>
+        <div>
+          <span class="pill">Elegantry Umroh & Haji</span>
+          <h1>Agen Perjalanan Umroh Terpercaya</h1>
+          <p>Pelayanan dan Kenyamanan adalah prioritas kami untuk para tamu Allah.</p>
+          <div class="hero-actions">
+            <button class="cta-btn" data-view="program">Lihat Program</button>
+            <button class="ghost-btn" data-view="galeri">Jelajahi Galeri</button>
+          </div>
+        </div>
+        <div class="hero-panel">
+          <div class="stat">
+            <div>
+              <strong>+60 Jama'ah</strong>
+              <div style="color: var(--gray);">Umroh bersama kami</div>
+            </div>
+            <span class="pill">Terpercaya</span>
+          </div>
+          <div class="stat">
+            <div>
+              <strong>Include Perlengkapan</strong>
+              <div style="color: var(--gray);">Ibadah Umroh lengkap </div>
+            </div>
+            <span class="pill">Premium</span>
+          </div>
+          <div class="stat">
+            <div>
+              <strong>Umroh Private</strong>
+              <div style="color: var(--gray);">bersama Keluarga</div>
+            </div>
+            <span class="pill">Eksklusif</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-title">
+        <h2>Waktu di Tanah Suci</h2>
+        <p>Jam Realtime di Saudi dan Program Paket Umroh.</p>
+      </div>
+      <div class="home-grid">
+        <div class="clock-card">
+          <span class="pill">Waktu Saudi Arabia</span>
+          <div class="clock-main" id="timeRiyadh">--:--:--</div>
+          <div class="digital-small" id="dateRiyadh">Memuat...</div>
+        </div>
+        <div class="clock-card">
+          <span class="pill">Ringkasan Program</span>
+          <div id="summaryPrograms" style="font-size: 1.2rem; font-weight: 700;">0 Program Aktif</div>
+
+        </div>
+
+      </div>
+
+      <div class="section-title mt-30">
+        <h2>Mengapa pilih Kami?</h2>
+        <p>Alasan kamu harus menunaikan ibadah Umroh bersama kami</p>
+      </div>
+      <div class="feature-grid" id="homeFeatures"></div>
+
+      <div class="section-title mt-30">
+        <h2>Program Terbaru</h2>
+      </div>
+      <div class="program-grid" id="homePrograms"></div>
+
+      <div class="section-title mt-30">
+        <h2>Sekilas Momen</h2>
+        <p>Potret singkat perjalanan jamaah ELEGANTRY.</p>
+      </div>
+      <div class="gallery-grid" id="homeGallery"></div>
+    </section>
+
+    <section class="view" id="program" data-view="program">
+      <div class="section-title">
+        <h2>Program Umroh Eksklusif</h2>
+        <p>Semua program tampil dalam kartu premium dengan pencarian sederhana.</p>
+      </div>
+      <div class="program-tools">
+        <div>
+          <label for="searchName">Nama Program</label>
+          <input type="text" id="searchName" placeholder="Cari nama program" />
+        </div>
+        <div style="display: flex; align-items: flex-end;">
+          <button id="refreshPrograms" class="icon-btn" title="Muat ulang data dari data.jsonl">
+            <i class="fa-solid fa-rotate-right"></i> Refresh Data
+          </button>
+        </div>
+      </div>
+
+      <!-- Filter Kapsul (horizontal scrollable tanpa scrollbar) -->
+      <div class="mt-4 -mx-2 px-2 overflow-x-auto whitespace-nowrap scrollbar-hide snap-x snap-mandatory">
+        <div class="inline-flex gap-2.5 py-1">
+          <button 
+            class="filter-pill px-4 py-1.5 text-sm font-medium rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40 hover:bg-amber-500/30 transition-all snap-start"
+            data-sort="termurah"
+          >
+            Termurah
+          </button>
+
+          <button 
+            class="filter-pill px-4 py-1.5 text-sm font-medium rounded-full bg-white/5 text-gray-300 border border-white/10 hover:bg-white/10 transition-all snap-start"
+            data-sort="termahal"
+          >
+            Termahal
+          </button>
+
+          <button 
+            class="filter-pill px-4 py-1.5 text-sm font-medium rounded-full bg-white/5 text-gray-300 border border-white/10 hover:bg-white/10 transition-all snap-start"
+            data-sort="9hari"
+          >
+            9 Hari
+          </button>
+
+          <button 
+            class="filter-pill px-4 py-1.5 text-sm font-medium rounded-full bg-white/5 text-gray-300 border border-white/10 hover:bg-white/10 transition-all snap-start"
+            data-sort="12hari"
+          >
+            12 Hari
+          </button>
+
+          <button 
+            class="filter-pill px-4 py-1.5 text-sm font-medium rounded-full bg-white/5 text-gray-300 border border-white/10 hover:bg-white/10 transition-all snap-start"
+            data-sort="terlaris"
+          >
+            Terlaris
+          </button>
+
+          <button 
+            class="filter-pill px-4 py-1.5 text-sm font-medium rounded-full bg-white/5 text-gray-300 border border-white/10 hover:bg-white/10 transition-all snap-start"
+            data-sort="terdekat"
+          >
+            Terdekat
+          </button>
+        </div>
+      </div>
+
+      <div class="program-grid" id="programGrid"></div>
+    </section>
+
+    <section class="view" id="galeri" data-view="galeri">
+      <div class="section-title">
+        <h2>Galeri Keberangkatan</h2>
+        <p>Dokumentasi foto perjalanan jamaah ELEGANTRY dengan tampilan elegan dan modern.</p>
+      </div>
+      <div class="gallery-grid" id="galleryGrid"></div>
+    </section>
+
+    <section class="view" id="about" data-view="about">
+      <div class="section-title">
+<h2 style=" text-align: center; letter-spacing: 1px;">
+  <span style="font-family: 'Cinzel Decorative', serif; font-size: 40px; line-height: 1.1;color: var(--gold); text-shadow: 0 2px 10px rgba(184, 134, 11, 0.6);">ELEGANTRY</span><br>
+  <span style="color: white; text-shadow: 0 2px 8px rgba(0,0,0,0.5);">Tour & Travel</span>
+</h2>
+        <p>Pelayanan dan Kenyamanan adalah prioritas kami untuk para tamu Allah.</p>
+      </div>
+      <div class="about-grid">
+        <!-- Kolom kiri: Profil + Founder -->
+        <div>
+          <div class="contact-card">
+            <h3>Profil Singkat Kami</h3>
+            <p style="color: var(--gray); text-align: center; line-height: 1.7;">
+              ELEGANTRY TOUR & TRAVEL adalah penyedia layanan umroh premium yang fokus pada pengalaman elegan, aman, nyaman, dan personal. 
+              Kami menghadirkan perjalanan spiritual dengan eksklusifitas tinggi, manajemen profesional, dan pelayanan terbaik.
+            </p>
+            <div class="tag-row">
+              <span>Legal & Terpercaya</span>
+              <span>Member of Amjad Helmy Wisata</span>
+              <h1 style="color: var(--gray); font-size: 13px;">PPIU NO. 81200122118250002</h1>
+            </div>
+          </div>
+
+          <!-- Founder 1: Ahmad Syahril -->
+          <div class="founder-card" style="margin-top: 2.5rem;">
+            <div class="founder-content">
+              <!-- Ganti ini jadi gambar -->
+              <img 
+                src="/assets/founder1.png" 
+                class="founder-photo"
+                loading="lazy"
+              >
+              <div>
+                <strong>Aliyudin, Lc., Dipl.</strong>
+                <p style="color: var(--gray);">Founder</p>
+              </div>
+              <p style="color: var(--gray);">
+                Berpengalaman lebih dari 5 tahun dalam industri Travel Umroh, ditambah pengalaman terjun langsung membersamai jamaah sebagai Muthowwif Professional. 
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kolom kanan: Kontak + Form -->
+        <div>
+          <div class="contact-card" id="kontak">
+            <h3>Hotline kami</h3>
+            <p style="font-size: 1.3rem; font-weight: 600; text-align: center;">+62 858-8085-6341</p>
+            <p style="text-align: center; color: var(--gray);">elegantrytour@gmail.com</p>
+            <p style="text-align: center; color: var(--gray);">Ciruas, Serang Banten</p>
+            <div class="tag-row">
+              <span>24/7 Priority</span>
+              <span>Respon < 10 Menit</span>
+            </div>
+          </div>
+
+          <div class="contact-card" style="margin-top: 2.5rem;">
+            <h3>Form Pendaftaran</h3>
+            <form id="registerForm" class="form-grid">
+              <label for="name">Nama lengkap</label>
+              <input type="text" id="name" name="name" placeholder="Nama lengkap" required />
+
+              <label for="phone">Nomor WhatsApp</label>
+              <input type="tel" id="phone" name="phone" placeholder="Nomor WhatsApp" required />
+
+              <label for="city">Kota domisili</label>
+              <input type="text" id="city" name="city" placeholder="Kota domisili" />
+
+              <label for="programSelect">Pilih program favorit</label>
+              <select name="program" id="programSelect">
+                <option value="">Pilih program favorit</option>
+              </select>
+
+              <label for="notes">Catatan khusus / permintaan</label>
+              <textarea id="notes" name="notes" placeholder="Catatan khusus / permintaan"></textarea>
+
+              <button type="submit" class="cta-btn" style="padding: 1rem; font-size: 1.1rem;">
+                Kirim ke WhatsApp
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+    <footer>
+      <div class="social-icons" style="text-align: center; margin-bottom: 1rem;">
+        <a href="https://www.instagram.com/elegantrytravel/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <i class="fab fa-instagram fa-2x" style="color: var(--gold-soft); margin: 0 1rem; transition: transform 0.3s;"></i>
+        </a>
+        <a href="https://www.tiktok.com/@elegantrytravel" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+          <i class="fab fa-tiktok fa-2x" style="color: var(--gold-soft); margin: 0 1rem; transition: transform 0.3s;"></i>
+        </a>
+        <a href="https://www.facebook.com/elegantrytravel" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <i class="fab fa-facebook fa-2x" style="color: var(--gold-soft); margin: 0 1rem; transition: transform 0.3s;"></i>
+        </a>
+      </div>
+
+      <p style="text-align: center; margin: 0;">© 2025 ELEGANTRY TOUR & TRAVEL. Semua hak cipta dilindungi.</p>
+    </footer>
+
+<nav class="bottom-nav" id="bottomNav">
+  <a href="#program" class="bottom-link" data-view="program">
+    <span class="bottom-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 20h16" />
+        <path d="M12 4a5 5 0 0 0-5 5v3h10V9a5 5 0 0 0-5-5z" />
+        <path d="M6 12h12v8H6z" />
+      </svg>
+    </span>
+    Program
+  </a>
+
+  <a href="#galeri" class="bottom-link" data-view="galeri">
+    <span class="bottom-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+        <circle cx="8.5" cy="8.5" r="1.5" />
+        <polyline points="21 15 16 10 5 21" />
+      </svg>
+    </span>
+    Galeri
+  </a>
+
+  <!-- Beranda di TENGAH dan paling menonjol -->
+  <a href="#beranda" class="bottom-link active" data-view="beranda">
+    <span class="bottom-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+        <polyline points="9 22 9 12 15 12 15 22" />
+      </svg>
+    </span>
+    Beranda
+  </a>
+
+  <a href="#about" class="bottom-link" data-view="about">
+    <span class="bottom-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10" />
+        <path d="M8 14s1.5 2 4 2 4-2 4-2" />
+        <line x1="9" y1="9" x2="9.01" y2="9" />
+        <line x1="15" y1="9" x2="15.01" y2="9" />
+      </svg>
+    </span>
+    About
+  </a>
+
+  <a href="https://wa.me/6285880856341?text=Halo%20ELEGANTRY%2C%20saya%20ingin%20bertanya%20tentang%20program%20umroh." class="bottom-link pulse" aria-label="Tanya via WhatsApp">
+    <span class="bottom-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+      </svg>
+    </span>
+    Tanya
+  </a>
+</nav>
+
+  <div class="modal" id="detailModal" aria-hidden="true">
+    <div class="modal-content" role="dialog" aria-modal="true">
+      <button class="icon-btn" id="closeModal" style="justify-self: end; width: auto;">Tutup</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const STORAGE_KEY = "elegantry-programs";
+    const programGrid = document.getElementById("programGrid");
+    const programSelect = document.getElementById("programSelect");
+    const searchName = document.getElementById("searchName");
+    const toast = document.getElementById("toast");
+    const detailModal = document.getElementById("detailModal");
+    const modalContent = document.getElementById("modalContent");
+    const closeModal = document.getElementById("closeModal");
+    const homePrograms = document.getElementById("homePrograms");
+    const homeFeatures = document.getElementById("homeFeatures");
+    const homeGallery = document.getElementById("homeGallery");
+    const galleryGrid = document.getElementById("galleryGrid");
+
+    let programs = [];
+
+    const highlightFeatures = [
+      {
+        title: "Exclusive Manasik Guidance",
+        description: "Panduan praktis dan doa selama perjalanan oleh pembimbing berpengalaman.",
+      },
+      {
+        title: "Strategic Location Hotels",
+        description: "Pilihan hotel bintang 3-5 yang dekat dengan Masjid Nabawi dan Masjidil Haram.",
+      },
+      {
+        title: "Transparent Pricing",
+        description: "Tidak ada biaya tersembunyi. Paket jelas dan fleksibel sesuai kebutuhan Anda.",
+      },
+      {
+        title: "Premium Facilities",
+        description: "Transportasi nyaman, makanan halal, dan pendampingan penuh selama perjalanan.",
+      },
+    ];
+
+    const galleryItems = Array.from({ length: 20 }).map((_, index) => ({
+      title: `Perjalanan Jamaah ${index + 1}`,
+      image: `https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80&sig=${index + 1}`,
+    }));
+
+    const formatCurrency = (value) =>
+      new Intl.NumberFormat("id-ID", {
+        style: "currency",
+        currency: "IDR",
+        maximumFractionDigits: 0,
+      }).format(value || 0);
+
+    const showToast = (message) => {
+      toast.textContent = message;
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 2500);
+    };
+
+    const parseJSONL = (text) =>
+      text
+        .split("\n")
+        .map((line) => line.trim())
+        .filter(Boolean)
+        .map((line) => JSON.parse(line));
+
+    const loadPrograms = async () => {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored) {
+        try {
+          programs = JSON.parse(stored);
+          if (programs.length > 0) return;
+        } catch {}
+      }
+
+  // Coba load dari file lokal via fetch (hanya kerja kalau pakai server lokal)
+  try {
+    const response = await fetch("data.jsonl", { cache: "no-store" });
+    if (response.ok) {
+      const text = await response.text();
+      programs = parseJSONL(text);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(programs));
+      return;
+    }
+  } catch (err) {
+    console.log("Fetch gagal (normal saat file:// protocol)", err);
+  }
+
+  // Fallback: tampilkan pesan atau hardcode minimal
+  showToast("Tidak bisa membaca data.jsonl. Jalankan via server lokal (Live Server / XAMPP) atau upload ke hosting.");
+  programs = []; // atau paste hardcode di sini jika mau
+};
+
+    const updateProgramSelect = () => {
+      programSelect.innerHTML = '<option value="">Pilih program favorit</option>';
+      programs.forEach((program) => {
+        const option = document.createElement("option");
+        option.value = program.title;
+        option.textContent = program.title;
+        programSelect.appendChild(option);
+      });
+    };
+
+const buildProgramCard = (program) => `
+  <div class="card-exclusive flex flex-col h-full">
+    <img src="${program.image}" class="w-full h-48 object-cover opacity-80" alt="${program.title}">
+    
+    <div class="p-6 flex flex-col flex-grow">
+      <h4 class="font-cinzel text-xl text-[#D4AF37] mb-2">${program.title}</h4>
+      
+      <!-- Baris baru: Tanggal Keberangkatan dengan ikon pesawat -->
+      <div class="flex items-center text-sm text-gray-300 mb-3">
+        <i class="fa-solid fa-plane-departure mr-2 text-[#D4AF37]"></i>
+        <span>Keberangkatan: ${program.departure || 'Segera diumumkan'}</span>
+      </div>
+      
+      <!-- Baris durasi & hotel tetap seperti semula -->
+      <div class="flex justify-between text-xs text-gray-400 mb-4 border-b border-gray-800 pb-2">
+        <span><i class="fa-solid fa-calendar-day mr-1"></i> ${program.duration}</span>
+        <span><i class="fa-solid fa-hotel mr-1"></i> Hotel ⭐⭐⭐⭐</span>
+      </div>
+      
+      <p class="text-sm text-gray-400 mb-6 flex-grow">
+        ${program.shortDescription?.substring(0, 80) + '...' || 
+          program.description?.substring(0, 80) + '...' || 
+          'Pengalaman umroh premium dengan layanan terbaik.'}
+      </p>
+      
+      <div class="mt-auto">
+        <p class="text-xs uppercase text-gray-500">Mulai Dari</p>
+        <p class="text-xl font-bold mb-4 text-white">IDR ${formatCurrency(program.price).replace('Rp', '').trim()}</p>
+        <button class="w-full border border-[#D4AF37] py-2 text-xs font-bold hover:bg-[#D4AF37] hover:text-black transition uppercase"
+                data-action="detail" data-id="${program.id}">
+          DETAIL PAKET
+        </button>
+      </div>
+    </div>
+  </div>
+`;
+
+// Sorting state
+let currentSort = "termurah"; // atau null
+
+// Event listener untuk semua tombol filter
+document.querySelectorAll('.filter-pill').forEach(btn => {
+  btn.addEventListener('click', () => {
+    // Hapus active dari semua dulu
+    document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
+    // Tambah active ke yang diklik
+    btn.classList.add('active');
+
+    currentSort = btn.dataset.sort;
+    renderPrograms(); // panggil ulang render dengan sort baru
+  });
+});
+
+    // Modifikasi fungsi renderPrograms supaya support sorting
+    const renderPrograms = () => {
+      programGrid.innerHTML = "";
+      const nameValue = searchName.value.toLowerCase();
+
+      let filtered = programs.filter((program) =>
+        program.title.toLowerCase().includes(nameValue)
+      );
+
+      // Terapkan sorting berdasarkan currentSort
+      if (currentSort === "termurah") {
+        filtered.sort((a, b) => (a.price || 0) - (b.price || 0));
+      } else if (currentSort === "termahal") {
+        filtered.sort((a, b) => (b.price || 0) - (a.price || 0));
+      } else if (currentSort === "9hari") {
+        filtered = filtered.filter(p => p.duration?.toLowerCase().includes("9") || p.duration === "9 Hari");
+      } else if (currentSort === "12hari") {
+        filtered = filtered.filter(p => p.duration?.toLowerCase().includes("12") || p.duration === "12 Hari");
+      } else if (currentSort === "terlaris") {
+        // asumsi ada field popularity atau soldCount
+        filtered.sort((a, b) => (b.popularity || 0) - (a.popularity || 0));
+      } else if (currentSort === "terdekat") {
+        // asumsi ada field departureDate → parse jadi Date
+        filtered.sort((a, b) => new Date(a.departure || "9999-12-31") - new Date(b.departure || "9999-12-31"));
+      }
+
+      if (!filtered.length) {
+        programGrid.innerHTML = "<p style='color: var(--gray);'>Program belum tersedia untuk filter ini.</p>";
+        return;
+      }
+
+      filtered.forEach((program) => {
+        const card = document.createElement("article");
+        card.className = "program-card";
+        card.innerHTML = buildProgramCard(program);
+        programGrid.appendChild(card);
+      });
+    };
+    
+    
+
+    const renderHomePrograms = () => {
+      homePrograms.innerHTML = "";
+      programs.slice(0, 3).forEach((program) => {
+        const card = document.createElement("article");
+        card.className = "program-card";
+        card.innerHTML = buildProgramCard(program);
+        homePrograms.appendChild(card);
+      });
+    };
+
+    const renderHomeFeatures = () => {
+      homeFeatures.innerHTML = "";
+      highlightFeatures.forEach((feature) => {
+        const card = document.createElement("div");
+        card.className = "feature-card";
+        card.innerHTML = `<h3>${feature.title}</h3><p>${feature.description}</p>`;
+        homeFeatures.appendChild(card);
+      });
+    };
+
+    const renderGallery = () => {
+      galleryGrid.innerHTML = "";
+      galleryItems.forEach((item) => {
+        const card = document.createElement("div");
+        card.className = "gallery-item";
+        card.innerHTML = `
+          <img src="${item.image}" alt="${item.title}" />
+          <div class="gallery-overlay">${item.title}</div>
+        `;
+        galleryGrid.appendChild(card);
+      });
+    };
+
+    const renderHomeGallery = () => {
+      homeGallery.innerHTML = "";
+      galleryItems.slice(0, 3).forEach((item) => {
+        const card = document.createElement("div");
+        card.className = "gallery-item";
+        card.innerHTML = `
+          <img src="${item.image}" alt="${item.title}" />
+          <div class="gallery-overlay">${item.title}</div>
+        `;
+        homeGallery.appendChild(card);
+      });
+    };
+
+const openDetail = (program) => {
+  modalContent.innerHTML = `
+    <img src="${program.image || 'https://via.placeholder.com/800x400?text=No+Image'}" 
+         class="w-full h-64 object-cover rounded-lg mb-6 shadow-2xl" 
+         alt="${program.title || 'Program Umroh'}">
+    
+    <h2 class="font-cinzel text-3xl gold-gradient mb-5 text-center md:text-left">${program.title || 'Judul tidak tersedia'}</h2>
+    
+    <!-- Info utama - layout unik & icon berbeda -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+      <!-- Keberangkatan -->
+      <div class="bg-gradient-to-br from-rose-950/30 to-transparent p-4 rounded-xl border border-rose-800/30 hover:border-rose-600/50 transition-all">
+        <div class="flex items-center gap-3 mb-2">
+          <i class="fa-solid fa-plane-departure text-2xl text-rose-400"></i>
+          <h4 class="text-rose-300 font-semibold">Tanggal Berangkat</h4>
+        </div>
+        <p class="text-gray-200 pl-1">${program.departure || '-'}</p>
+      </div>
+      <!-- Lokasi -->
+      <div class="bg-gradient-to-br from-amber-950/30 to-transparent p-4 rounded-xl border border-amber-800/30 hover:border-amber-600/50 transition-all">
+        <div class="flex items-center gap-3 mb-2">
+          <i class="fa-solid fa-location-dot text-2xl text-amber-400"></i>
+          <h4 class="text-amber-300 font-semibold">Lokasi Keberangkatan</h4>
+        </div>
+        <p class="text-gray-200 pl-1">${program.location || '-'}</p>
+      </div>
+
+      <!-- Durasi -->
+      <div class="bg-gradient-to-br from-indigo-950/30 to-transparent p-4 rounded-xl border border-indigo-800/30 hover:border-indigo-600/50 transition-all">
+        <div class="flex items-center gap-3 mb-2">
+          <i class="fa-solid fa-clock-rotate-left text-2xl text-indigo-400"></i>
+          <h4 class="text-indigo-300 font-semibold">Durasi Perjalanan</h4>
+        </div>
+        <p class="text-gray-200 pl-1">${program.duration || '-'}</p>
+      </div>
+
+      <!-- Harga -->
+      <div class="bg-gradient-to-br from-emerald-950/30 to-transparent p-4 rounded-xl border border-emerald-800/30 hover:border-emerald-600/50 transition-all lg:col-span-1">
+        <div class="flex items-center gap-3 mb-2">
+          <i class="fa-solid fa-tag text-2xl text-emerald-400"></i>
+          <h4 class="text-emerald-300 font-semibold">Harga Paket</h4>
+        </div>
+        <p class="text-2xl font-bold text-white pl-1">${formatCurrency(program.price)}</p>
+      </div>
+
+
+      <!-- Status -->
+      <div class="bg-gradient-to-br from-purple-950/30 to-transparent p-4 rounded-xl border border-purple-800/30 hover:border-purple-600/50 transition-all">
+        <div class="flex items-center gap-3 mb-2">
+          <i class="fa-solid fa-bolt text-2xl text-purple-400"></i>
+          <h4 class="text-purple-300 font-semibold">Status Kuota</h4>
+        </div>
+        <p class="text-gray-200 font-medium pl-1">${program.status || '-'}</p>
+      </div>
+
+      <!-- Penerbangan -->
+      <div class="bg-gradient-to-br from-cyan-950/30 to-transparent p-4 rounded-xl border border-cyan-800/30 hover:border-cyan-600/50 transition-all sm:col-span-2 lg:col-span-3">
+        <div class="flex items-center gap-3 mb-2">
+          <i class="fa-solid fa-plane text-2xl text-cyan-400"></i>
+          <h4 class="text-cyan-300 font-semibold">Maskapai & Penerbangan</h4>
+        </div>
+        <p class="text-gray-200 pl-1">${program.flight || '-'}</p>
+      </div>
+
+      <!-- Hotel -->
+      <div class="bg-gradient-to-br from-amber-950/30 to-transparent p-4 rounded-xl border border-amber-800/30 hover:border-amber-600/50 transition-all sm:col-span-2 lg:col-span-3">
+        <div class="flex items-center gap-3 mb-2">
+          <i class="fa-solid fa-building text-2xl text-amber-400"></i>
+          <h4 class="text-amber-300 font-semibold">Hotel & Akomodasi</h4>
+        </div>
+        <p class="text-gray-200 pl-1">${program.hotel || '-'}</p>
+      </div>
+    </div>
+
+    <!-- Diskon (jika ada) -->
+    ${program.discount && program.discount > 0 ? `
+    <div class="mb-8 p-5 bg-gradient-to-r from-red-950/40 to-rose-950/30 border border-red-800/50 rounded-xl">
+      <div class="flex items-center gap-3 mb-2">
+        <i class="fa-solid fa-percent text-2xl text-red-400"></i>
+        <h3 class="text-xl font-bold text-red-300">Diskon Spesial</h3>
+      </div>
+      <p class="text-red-200 text-lg">Potongan: ${formatCurrency(program.discount)}</p>
+      <p class="text-gray-300 mt-1">Harga akhir: <strong class="text-white">${formatCurrency(program.price - Number(program.discount))}</strong></p>
+    </div>` : ''}
+
+    <!-- Deskripsi Singkat -->
+    <div class="mb-8">
+      <h3 class="text-xl font-semibold mb-3 text-amber-300 flex items-center gap-2">
+        <i class="fa-solid fa-star-of-david"></i> Sekilas Program
+      </h3>
+      <p class="text-gray-200 leading-relaxed whitespace-pre-line">${program.shortDescription || '-'}</p>
+    </div>
+
+    <!-- Deskripsi Lengkap -->
+    <div class="mb-10">
+      <h3 class="text-xl font-semibold mb-3 text-amber-300 flex items-center gap-2">
+        <i class="fa-solid fa-book-quran"></i> Deskripsi Lengkap
+      </h3>
+      <p class="text-gray-300 leading-relaxed whitespace-pre-line">${program.description || program.shortDescription || 'Tidak ada deskripsi lengkap.'}</p>
+    </div>
+
+    <!-- Keunggulan -->
+    <div class="mb-10">
+      <h3 class="text-xl font-semibold mb-4 text-amber-300 flex items-center gap-2">
+        <i class="fa-solid fa-trophy"></i> Keunggulan Paket Ini
+      </h3>
+      <p class="text-gray-300 whitespace-pre-line leading-relaxed">${program.advantages || '-'}</p>
+    </div>
+
+    <!-- Requirements, Include, Exclude dalam grid -->
+    <div class="grid md:grid-cols-3 gap-6 mb-10">
+      <div class="bg-gray-900/40 p-5 rounded-xl border border-gray-700/50">
+        <h3 class="text-lg font-semibold mb-4 text-amber-300 flex items-center gap-2">
+          <i class="fa-solid fa-clipboard-list"></i> Persyaratan
+        </h3>
+        <ul class="space-y-2 text-gray-300 text-sm">
+          ${ (program.requirements || []).map(item => `<li class="flex items-start gap-2"><i class="fa-solid fa-circle-info text-amber-400 mt-1 text-xs"></i>${item}</li>`).join('') || '<li>Tidak ada persyaratan khusus</li>' }
+        </ul>
+      </div>
+
+      <div class="bg-gray-900/40 p-5 rounded-xl border border-gray-700/50">
+        <h3 class="text-lg font-semibold mb-4 text-amber-300 flex items-center gap-2">
+          <i class="fa-solid fa-check-double"></i> Termasuk
+        </h3>
+        <ul class="space-y-2 text-gray-300 text-sm">
+          ${ (program.include || []).map(item => `<li class="flex items-start gap-2"><i class="fa-solid fa-check text-emerald-400 mt-1 text-xs"></i>${item}</li>`).join('') || '<li>Tidak ada informasi include</li>' }
+        </ul>
+      </div>
+
+      <div class="bg-gray-900/40 p-5 rounded-xl border border-gray-700/50">
+        <h3 class="text-lg font-semibold mb-4 text-amber-300 flex items-center gap-2">
+          <i class="fa-solid fa-ban"></i> Tidak Termasuk
+        </h3>
+        <ul class="space-y-2 text-gray-300 text-sm">
+          ${ (program.exclude || []).map(item => `<li class="flex items-start gap-2"><i class="fa-solid fa-xmark text-red-400 mt-1 text-xs"></i>${item}</li>`).join('') || '<li>Tidak ada informasi exclude</li>' }
+        </ul>
+      </div>
+    </div>
+
+    <!-- Tombol aksi -->
+    <div class="flex flex-col sm:flex-row gap-4 mt-10">
+      <button onclick="window.open('https://wa.me/6285880856341?text=Halo%20ELEGANTRY%2C%20saya%20ingin%20daftar%20${encodeURIComponent(program.title || 'paket%20ini')}', '_blank')"
+              class="flex-1 bg-gradient-to-r from-amber-500 to-yellow-600 text-black py-4 font-bold rounded-xl hover:brightness-110 transition shadow-lg">
+        <i class="fa-brands fa-whatsapp mr-2"></i> DAFTAR SEKARANG
+      </button>
+      <button onclick="document.getElementById('detailModal').classList.remove('active')"
+              class="flex-1 bg-gray-800/70 text-white py-4 font-bold rounded-xl hover:bg-gray-700 transition border border-gray-600">
+        TUTUP
+      </button>
+    </div>
+  `;
+  detailModal.classList.add("active");
+};
+
+    const updateSummary = () => {
+      document.getElementById("summaryPrograms").textContent = `${programs.length} Program Aktif`;
+    };
+
+    const updateClocks = () => {
+      const riyadhTime = new Date().toLocaleString("en-US", {
+        timeZone: "Asia/Riyadh",
+        hour12: false,
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+      });
+
+      const dateRiyadh = new Date().toLocaleDateString("id-ID", {
+        timeZone: "Asia/Riyadh",
+        weekday: "long",
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      });
+
+      document.getElementById("timeRiyadh").textContent = riyadhTime;
+      document.getElementById("dateRiyadh").textContent = dateRiyadh;
+    };
+
+    const handleRegister = (event) => {
+      event.preventDefault();
+      const form = event.target;
+      const data = new FormData(form);
+      const message = `Halo ELEGANTRY, saya ingin daftar umroh.%0A%0ANama: ${data.get("name")}%0ANo WA: ${data.get("phone")}%0AKota: ${data.get("city") || "-"}%0AProgram: ${data.get("program") || "-"}%0ACatatan: ${data.get("notes") || "-"}`;
+      window.open(`https://wa.me/6285880856341?text=${message}`, "_blank");
+      showToast("Form dikirim ke WhatsApp.");
+      form.reset();
+    };
+
+    const handleActionClick = (event) => {
+      const button = event.target.closest('button[data-action="detail"]');
+      if (!button) return;
+
+      const id = button.dataset.id;
+      if (!id) {
+        console.warn("Tombol detail ditekan tapi tidak ada data-id");
+        return;
+      }
+
+      const program = programs.find((item) => item.id === id);
+      if (!program) {
+        console.warn("Program dengan id", id, "tidak ditemukan");
+        showToast("Data paket tidak ditemukan");
+        return;
+      }
+
+      openDetail(program);
+    };
+
+    const setupNavigation = () => {
+      console.log("setupNavigation dijalankan");
+
+      const views    = document.querySelectorAll(".view");
+      const navItems = document.querySelectorAll("[data-view]");
+
+      console.log("Jumlah elemen [data-view]:", navItems.length);
+
+      const setView = (targetView) => {
+        console.log("setView dipanggil untuk:", targetView);
+
+        views.forEach(section => {
+          section.classList.toggle("view-active", section.id === targetView);
+        });
+
+        navItems.forEach(item => {
+          item.classList.toggle("active", item.dataset.view === targetView);
+        });
+
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      };
+
+      // ───────────────────────────────────────────────────────────────
+      // Event delegation – tapi hanya untuk elemen yang punya data-view
+      // ───────────────────────────────────────────────────────────────
+      document.addEventListener('click', function(e) {
+        // Cari elemen terdekat yang punya data-view
+        const navItem = e.target.closest('[data-view]');
+        if (!navItem) return;           // bukan navigasi → lanjutkan event normal
+
+        // ── Hanya lakukan pencegahan default jika benar-benar elemen <a href="#">
+        const isAnchor = navItem.tagName === 'A' && navItem.getAttribute('href')?.startsWith('#');
+        if (isAnchor) {
+          e.preventDefault();
+        }
+
+        // Tidak perlu stopPropagation() → biarkan event naik ke listener lain (detail paket dll)
+
+        const target = navItem.dataset.view;
+        if (!target) return;
+
+        console.log("Klik navigasi:", navItem.tagName, navItem.textContent.trim(), "→", target);
+
+        if (document.querySelector(".view-active")?.id === target) return;
+
+        setView(target);
+      }, false);   // ← false = bubbling phase (default & lebih aman di kasus ini)
+
+      // Inisialisasi
+      setView("beranda");
+    };
+
+    closeModal.addEventListener("click", () => {
+      detailModal.classList.remove("active");
+      detailModal.setAttribute("aria-hidden", "true");
+    });
+    detailModal.addEventListener("click", (event) => {
+      if (event.target === detailModal) {
+        detailModal.classList.remove("active");
+        detailModal.setAttribute("aria-hidden", "true");
+      }
+    });
+
+    searchName.addEventListener("input", renderPrograms);
+
+    //programGrid.addEventListener("click", handleActionClick);
+    //homePrograms.addEventListener("click", handleActionClick);
+
+    document.getElementById("registerForm").addEventListener("submit", handleRegister);
+
+// Ganti / tambahkan blok ini (lebih kuat)
+document.addEventListener('focusin', (e) => {
+    if (e.target.matches('input, select, textarea, [contenteditable]')) {
+        const currentScroll = window.scrollY;
+        // pakai requestAnimationFrame supaya lebih halus & reliable
+        requestAnimationFrame(() => {
+            window.scrollTo(0, currentScroll);
+        });
+    }
+});
+
+    const init = async () => {
+      await loadPrograms();
+      updateProgramSelect();
+      renderPrograms();
+      renderHomePrograms();
+      renderHomeFeatures();
+      renderGallery();
+      renderHomeGallery();
+      updateSummary();
+      updateClocks();
+      setupNavigation();
+      setInterval(updateClocks, 1000);
+    };
+
+    // ========================
+    // Cegah scroll ke atas saat klik sembarang tempat
+    // ========================
+    document.addEventListener('click', function(e) {
+
+        // Abaikan jika yang diklik adalah link navigasi yang sudah ditangani
+        if (e.target.closest('a[href^="#"]') || 
+            e.target.closest('button[data-view]') ||
+            e.target.closest('[data-view]') ||
+            e.target.closest('.icon-btn') ||
+            e.target.closest('.cta-btn')) {
+            return;
+        }
+
+        // Jika ternyata ada <a href="#"> atau href kosong → cegah default
+        const closestA = e.target.closest('a');
+        if (closestA && (!closestA.getAttribute('href') || closestA.getAttribute('href') === '#')) {
+            e.preventDefault();
+            e.stopPropagation();
+            return;
+        }
+
+        // Jika tombol tanpa type="button" → cegah juga
+        const closestBtn = e.target.closest('button');
+        if (closestBtn && !closestBtn.type) {
+            e.preventDefault();
+        }
+
+    }, true);   // true = capture phase (lebih awal)
+
+
+    // Fungsi untuk memaksa reload data dari file (tanpa pakai cache localStorage lama)
+    const refreshData = async () => {
+      showToast("Memuat ulang data dari data.jsonl...");
+      
+      // Hapus cache localStorage dulu supaya fetch benar-benar jalan ke file terbaru
+      localStorage.removeItem(STORAGE_KEY);
+      
+      try {
+        const response = await fetch("data.jsonl", { 
+          cache: "no-store", 
+          headers: { 'Cache-Control': 'no-cache' } 
+        });
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const text = await response.text();
+        programs = parseJSONL(text);
+        
+        // Simpan ulang ke localStorage (opsional, tapi berguna untuk performa)
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(programs));
+        
+        // Render ulang semua yang bergantung pada programs
+        updateProgramSelect();
+        renderPrograms();
+        renderHomePrograms();
+        updateSummary();
+        
+        showToast(`Berhasil! ${programs.length} program dimuat ulang.`);
+      } catch (error) {
+        console.error("Gagal refresh data:", error);
+        showToast("Gagal memuat data: " + error.message);
+      }
+    };
+
+    // Pasang event listener ke tombol refresh
+    document.getElementById("refreshPrograms").addEventListener("click", refreshData);
+document.addEventListener('click', handleActionClick);
+    init();
+
+    
+  </script>
+</body>
+</html>

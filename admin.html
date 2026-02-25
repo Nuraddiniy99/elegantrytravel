@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Console — ELEGANTRY TOUR & TRAVEL</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --black: #0a0a0d;
+      --graphite: #17171d;
+      --gold: #caa553;
+      --gold-soft: #f3d48a;
+      --white: #f8f8f8;
+      --gray: #9a9aa3;
+      --accent: #2a2a33;
+      --success: #24d18f;
+      --danger: #ff5d5d;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Manrope", "Inter", system-ui, sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top, rgba(202, 165, 83, 0.16), transparent 50%),
+        linear-gradient(120deg, #09090c, #101017 40%, #181821 100%);
+      color: var(--white);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    header {
+      padding: 1.4rem 6vw;
+      border-bottom: 1px solid rgba(202, 165, 83, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    header a {
+      text-decoration: none;
+      font-size: 12px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+    }
+
+    .brand .logo-img {
+      width: auto;               /* lebar mengikuti asli gambar */
+      max-width: 140px;          /* batasi lebar maksimal agar tidak terlalu lebar */
+      max-height: 52px;          /* BATASI TINGGI agar tidak vertikal berlebihan */
+      height: auto;              /* proporsi tetap terjaga */
+      display: block;
+      border-radius: 12px;
+      transition: transform 0.3s ease;
+    }
+
+    .brand .logo-img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Mobile: lebih kecil */
+    @media (max-width: 960px) {
+      .brand .logo-img {
+        max-width: 160px;
+        max-height: 102px;
+      }
+    }
+
+    main {
+      display: grid;
+      gap: 2rem;
+      padding: 2.5rem 6vw 3rem;
+    }
+
+    .layout {
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: minmax(280px, 360px) 1fr;
+    }
+
+    .panel {
+      background: rgba(18, 18, 25, 0.88);
+      border-radius: 20px;
+      border: 1px solid rgba(202, 165, 83, 0.2);
+      padding: 1.5rem;
+      display: grid;
+      gap: 1rem;
+    }
+
+    .panel h3 {
+      font-size: 1.2rem;
+    }
+
+    .field {
+      display: grid;
+      gap: 0.4rem;
+    }
+
+    .field label {
+      font-size: 0.8rem;
+      color: var(--gray);
+    }
+
+    .field input,
+    .field textarea,
+    .field select {
+      background: #0d0d12;
+      border: 1px solid rgba(202, 165, 83, 0.2);
+      color: var(--white);
+      padding: 0.6rem 0.8rem;
+      border-radius: 10px;
+    }
+
+    .field textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 0.6rem 1rem;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold), var(--gold-soft));
+      color: #1c1405;
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(202, 165, 83, 0.2);
+      color: var(--white);
+    }
+
+    .btn-danger {
+      background: rgba(255, 93, 93, 0.15);
+      border: 1px solid rgba(255, 93, 93, 0.4);
+      color: var(--danger);
+    }
+
+    .btn-success {
+      background: var(--success);
+      color: white;
+    }
+
+    .table {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .row {
+      background: rgba(16, 16, 22, 0.9);
+      border-radius: 16px;
+      border: 1px solid rgba(202, 165, 83, 0.2);
+      padding: 1rem;
+      display: grid;
+      gap: 0.6rem;
+    }
+
+    .row header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: none;
+      padding: 0;
+    }
+
+    .row-actions {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(202, 165, 83, 0.15);
+      color: var(--gold-soft);
+      font-size: 0.75rem;
+    }
+
+    .notice {
+      background: rgba(202, 165, 83, 0.12);
+      border: 1px solid rgba(202, 165, 83, 0.3);
+      border-radius: 14px;
+      padding: 0.9rem;
+      color: var(--gray);
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 960px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <img src="logo.png" alt="Logo" class="logo-img">
+    </div>
+    <a class="btn btn-secondary" href="index.html">Kembali ke Website</a>
+  </header>
+
+  <main>
+    <div class="notice">
+      Data disimpan di LocalStorage. Setelah selesai edit, tekan tombol 
+      <strong>Salin JSONL ke Clipboard</strong> lalu paste ke file <strong>data.jsonl</strong> di server.
+    </div>
+    <div class="layout">
+      <form class="panel" id="programForm">
+        <h3>Tambah / Edit Program</h3>
+        
+        <div class="field">
+          <label>Nama Program</label>
+          <input name="title" required />
+        </div>
+        <div class="field">
+          <label>Kota Keberangkatan</label>
+          <input name="location" required />
+        </div>
+        <div class="field">
+          <label>Durasi</label>
+          <input name="duration" required />
+        </div>
+        <div class="field">
+          <label>Harga</label>
+          <input name="price" type="number" min="0" required />
+        </div>
+        <div class="field">
+          <label>Tanggal Keberangkatan</label>
+          <input name="departure" type="date" required />
+        </div>
+        <div class="field">
+          <label>Status</label>
+          <select name="status">
+            <option value="Ready">Ready</option>
+            <option value="Limited">Limited</option>
+            <option value="Coming Soon">Coming Soon</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Maskapai</label>
+          <input name="flight" required />
+        </div>
+        <div class="field">
+          <label>Hotel</label>
+          <input name="hotel" required />
+        </div>
+        <div class="field">
+          <label>Gambar (URL)</label>
+          <input name="image" required />
+        </div>
+        <div class="field">
+          <label>Deskripsi Singkat</label>
+          <input name="shortDescription" required />
+        </div>
+        <div class="field">
+          <label>Deskripsi</label>
+          <textarea name="description" required></textarea>
+        </div>
+        <div class="field">
+          <label>Keunggulan</label>
+          <textarea name="advantages" required></textarea>
+        </div>
+        <div class="field">
+          <label>Diskon (opsional)</label>
+          <input name="discount" />
+        </div>
+
+        <div class="field">
+          <label>Syarat Berkas (pisahkan dengan koma)</label>
+          <textarea name="requirements" required>Sehat jasmani & rohani, Paspor Asli yang masih berlaku minimal 7 bulan, Nama Paspor harus 2 suku kata contoh: Ahmad Hasan, Foto ukuran 4x6 sebanyak 2 lembar, Fotokopi KTP, KK, Buku Nikah bagi suami istri, Fotokopi akta lahir bagi anak-anak, Membayar DP minimal Rp. 5.000.000, Pendaftaran paling lambat 30 hari sebelum keberangkatan</textarea>
+        </div>
+
+        <div class="field">
+          <label>Include (pisahkan dengan koma)</label>
+          <textarea name="include" required>Tiket Kelas Ekonomi Jakarta - Jeddah / Madinah PP, Visa Umroh, Manasik Umroh, Handling dan perlengkapan, Makan 3x sehari, Transportasi Bus Full AC, Tour ziarah Mekkah dan Madinah, Tour Leader & Muthawif berpengalaman, City tour Jeddah, Air Zam-zam 5 liter</textarea>
+        </div>
+
+        <div class="field">
+          <label>Exclude (pisahkan dengan koma)</label>
+          <textarea name="exclude" required>Pembuatan Paspor, Buku Kuning / Suntik Meningitis, Transport dan keperluan pribadi, Tips, Laundry, dll</textarea>
+        </div>
+
+        <div style="display: flex; gap: 0.6rem; flex-wrap: wrap;">
+          <button class="btn btn-primary" type="submit">Simpan</button>
+          <button class="btn btn-secondary" type="button" id="resetBtn">Reset</button>
+          <button class="btn btn-danger" type="button" id="deleteBtn" disabled>Hapus</button>
+        </div>
+      </form>
+
+      <div class="panel">
+        <h3>Daftar Program</h3>
+        <div style="display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 1rem;">
+          <button class="btn btn-success" id="copyJsonlBtn" type="button">Salin JSONL ke Clipboard</button>
+          <button class="btn btn-secondary" id="reloadBtn" type="button">Reload dari data.jsonl</button>
+        </div>
+        <div class="table" id="programTable"></div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const STORAGE_KEY = "elegantry-programs";
+    const programForm = document.getElementById("programForm");
+    const programTable = document.getElementById("programTable");
+    const resetBtn = document.getElementById("resetBtn");
+    const deleteBtn = document.getElementById("deleteBtn");
+    const copyJsonlBtn = document.getElementById("copyJsonlBtn");
+    const reloadBtn = document.getElementById("reloadBtn");
+
+    let programs = [];
+    let selectedId = null;
+
+    const parseCSV = (value) =>
+      value
+        .split(",")
+        .map((item) => item.trim())
+        .filter(Boolean);
+
+    const serializeJSONL = (items) =>
+      items.map((item) => JSON.stringify(item)).join("\n");
+
+    const loadPrograms = async () => {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored) {
+        programs = JSON.parse(stored);
+        return;
+      }
+      try {
+        const response = await fetch("data.jsonl", { cache: "no-store" });
+        const text = await response.text();
+        programs = text
+          .split("\n")
+          .map((line) => line.trim())
+          .filter(Boolean)
+          .map((line) => JSON.parse(line));
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(programs));
+      } catch (e) {
+        programs = [];
+      }
+    };
+
+    const savePrograms = () => {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(programs));
+      renderPrograms();
+    };
+
+    const clearForm = () => {
+      programForm.reset();
+      selectedId = null;
+      deleteBtn.disabled = true;
+    };
+
+    const renderPrograms = () => {
+      programTable.innerHTML = "";
+      programs.forEach((program) => {
+        const row = document.createElement("div");
+        row.className = "row";
+        row.innerHTML = `
+          <header>
+            <strong>${program.title}</strong>
+            <span class="tag">${program.status}</span>
+          </header>
+          <div style="color: var(--gray);">${program.location} · ${program.duration}</div>
+          <div style="color: var(--gray);">${program.departure} · Rp ${program.price.toLocaleString("id-ID")}</div>
+          <div class="row-actions">
+            <button class="btn btn-secondary" data-action="edit" data-id="${program.id}">Edit</button>
+            <button class="btn btn-danger" data-action="delete" data-id="${program.id}">Hapus</button>
+          </div>
+        `;
+        programTable.appendChild(row);
+      });
+    };
+
+    const fillForm = (program) => {
+      programForm.title.value = program.title;
+      programForm.location.value = program.location;
+      programForm.duration.value = program.duration;
+      programForm.price.value = program.price;
+      programForm.departure.value = program.departure;
+      programForm.status.value = program.status;
+      programForm.flight.value = program.flight;
+      programForm.hotel.value = program.hotel;
+      programForm.image.value = program.image;
+      programForm.shortDescription.value = program.shortDescription;
+      programForm.description.value = program.description;
+      programForm.advantages.value = program.advantages;
+      programForm.discount.value = program.discount || "";
+      programForm.requirements.value = program.requirements.join(", ");
+      programForm.include.value = program.include.join(", ");
+      programForm.exclude.value = program.exclude.join(", ");
+      selectedId = program.id;
+      deleteBtn.disabled = false;
+    };
+
+    const upsertProgram = (data) => {
+      if (selectedId) {
+        programs = programs.map((program) => (program.id === selectedId ? { ...program, ...data } : program));
+      } else {
+        const id = `ET-${String(programs.length + 1).padStart(3, "0")}`;
+        programs.push({ id, ...data });
+      }
+      savePrograms();
+      clearForm();
+    };
+
+    programForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const data = {
+        title: programForm.title.value.trim(),
+        location: programForm.location.value.trim(),
+        duration: programForm.duration.value.trim(),
+        price: Number(programForm.price.value),
+        departure: programForm.departure.value,
+        status: programForm.status.value,
+        flight: programForm.flight.value.trim(),
+        hotel: programForm.hotel.value.trim(),
+        image: programForm.image.value.trim(),
+        shortDescription: programForm.shortDescription.value.trim(),
+        description: programForm.description.value.trim(),
+        advantages: programForm.advantages.value.trim(),
+        discount: programForm.discount.value.trim(),
+        requirements: parseCSV(programForm.requirements.value),
+        include: parseCSV(programForm.include.value),
+        exclude: parseCSV(programForm.exclude.value),
+      };
+      upsertProgram(data);
+    });
+
+    resetBtn.addEventListener("click", clearForm);
+
+    deleteBtn.addEventListener("click", () => {
+      if (!selectedId) return;
+      programs = programs.filter((program) => program.id !== selectedId);
+      savePrograms();
+      clearForm();
+    });
+
+    programTable.addEventListener("click", (event) => {
+      const button = event.target.closest("button");
+      if (!button) return;
+      const id = button.dataset.id;
+      if (button.dataset.action === "edit") {
+        const program = programs.find((item) => item.id === id);
+        if (program) fillForm(program);
+      }
+      if (button.dataset.action === "delete") {
+        programs = programs.filter((program) => program.id !== id);
+        savePrograms();
+      }
+    });
+
+    // Tombol salin JSONL ke clipboard
+    copyJsonlBtn.addEventListener("click", () => {
+      if (programs.length === 0) {
+        alert("Belum ada data program untuk disalin.");
+        return;
+      }
+      const jsonlContent = serializeJSONL(programs);
+      navigator.clipboard.writeText(jsonlContent)
+        .then(() => {
+          alert("JSONL berhasil disalin ke clipboard!\nSekarang paste ke file data.jsonl di server.");
+        })
+        .catch(err => {
+          alert("Gagal menyalin: " + err);
+          console.error(err);
+        });
+    });
+
+    reloadBtn.addEventListener("click", async () => {
+      if (!confirm("Yakin reload dari file data.jsonl asli? Perubahan lokal akan hilang.")) return;
+      localStorage.removeItem(STORAGE_KEY);
+      await loadPrograms();
+      renderPrograms();
+    });
+
+    const init = async () => {
+      await loadPrograms();
+      renderPrograms();
+    };
+
+    init();
+  </script>
+</body>
+</html>
