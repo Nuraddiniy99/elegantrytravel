@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Generator Sertifikat Badal Umroh - Professional</title>
+
+    <!-- ============================================ -->
+    <!-- FONT FACE: Monotype Corsiva                  -->
+    <!-- Tempatkan file 'monotype-corsiva.ttf' di     -->
+    <!-- direktori root yang sama dengan file HTML    -->
+    <!-- ============================================ -->
+    <style>
+        @font-face {
+            font-family: 'Monotype Corsiva';
+            src: url('monotype-corsiva.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* ============================================ */
+        /* THEME: PUTIH (Main), HITAM (Secondary), EMAS (Aksen) */
+        /* ============================================ */
+        :root {
+            --primary-white: #FFFFFF;
+            --secondary-black: #1A1A1A;
+            --accent-gold: #D4AF37;
+            --accent-gold-light: #F4E4A1;
+            --gray-light: #F5F5F5;
+            --gray-medium: #E0E0E0;
+            --gray-dark: #666666;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.16);
+            --border-radius: 12px;
+            --border-radius-lg: 16px;
+        }
+
+        html, body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--gray-light);
+            min-height: 100vh;
+            color: var(--secondary-black);
+            overflow-x: hidden;
+        }
+
+        /* ============================================ */
+        /* HEADER                                       */
+        /* ============================================ */
+        .header {
+            background: var(--primary-white);
+            padding: 16px 24px;
+            text-align: left;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid var(--accent-gold);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .header-icon {
+            width: 32px;
+            height: 32px;
+            color: var(--accent-gold);
+        }
+
+        .header-text h1 {
+            color: var(--secondary-black);
+            font-size: 20px;
+            font-weight: 600;
+            margin: 0;
+            letter-spacing: -0.02em;
+        }
+
+        .header-text p {
+            color: var(--gray-dark);
+            font-size: 13px;
+            margin-top: 2px;
+        }
+
+        /* ============================================ */
+        /* MAIN CONTAINER - MOBILE LAYOUT               */
+        /* ============================================ */
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+            gap: 24px;
+        }
+
+        /* ============================================ */
+        /* CERTIFICATE PREVIEW AREA                     */
+        /* ============================================ */
+        .certificate-section {
+            background: var(--primary-white);
+            border-radius: var(--border-radius-lg);
+            padding: 20px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--gray-medium);
+        }
+
+        .section-title {
+            color: var(--secondary-black);
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .section-title svg {
+            width: 20px;
+            height: 20px;
+            color: var(--accent-gold);
+        }
+
+        .certificate-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: auto;
+            -webkit-overflow-scrolling: touch;
+            background: var(--gray-light);
+            border-radius: 8px;
+            padding: 10px;
+        }
+
+        .certificate-container {
+            position: relative;
+            /* A4 Portrait aspect ratio container */
+            width: 100%;
+            max-width: 380px;
+            aspect-ratio: 210/297;
+            background-image: url('https://i.ibb.co/93m9k9Bq/Sertif-umroh.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            box-shadow: var(--shadow-lg);
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 0 auto;
+            border: 2px solid var(--accent-gold);
+        }
+
+        /* ============================================ */
+        /* TEXT OVERLAY - RESPONSIVE FONT (vw based)    */
+        /* Menggunakan vw agar ukuran relatif terhadap  */
+        /* lebar container, konsisten di semua device.  */
+        /* Nilai px yang dikomentari sebagai referensi  */
+        /* ============================================ */
+        .nama-muthowwif-atas {
+            position: absolute;
+            top: 42.7%;
+            left: 25%;
+            font-family: 'Monotype Corsiva', cursive;
+            /* font-size: 13px; */ /* Referensi desktop */
+            font-size: clamp(8px, 3.4vw, 13px); /* Responsif: min 8px, ideal 3.4% lebar viewport, max 13px */
+            color: #000000;
+            font-weight: normal;
+            letter-spacing: 0.3px;
+            white-space: nowrap;
+            z-index: 10;
+        }
+
+        .alamat-muthowwif {
+            position: absolute;
+            top: 44.8%;
+            left: 25%;
+            font-family: 'Monotype Corsiva', cursive;
+            /* font-size: 13px; */
+            font-size: clamp(8px, 3.4vw, 13px);
+            color: #000000;
+            font-weight: normal;
+            letter-spacing: 0.2px;
+            max-width: 60%;
+            line-height: 1.2;
+            z-index: 10;
+        }
+
+        .nama-jamaah {
+            position: absolute;
+            top: 62%;
+            left: 29.4%;
+            font-family: 'Monotype Corsiva', cursive;
+            /* font-size: 13px; */
+            font-size: clamp(8px, 3.4vw, 13px);
+            color: #000000;
+            font-weight: normal;
+            letter-spacing: 0.3px;
+            white-space: nowrap;
+            z-index: 10;
+        }
+
+        .miqot-lokasi {
+            position: absolute;
+            top: 66.5%;
+            left: 29.4%;
+            font-family: 'Monotype Corsiva', cursive;
+            /* font-size: 13px; */
+            font-size: clamp(8px, 3.4vw, 13px);
+            color: #000000;
+            font-weight: normal;
+            letter-spacing: 0.2px;
+            white-space: nowrap;
+            z-index: 10;
+        }
+
+        .tanggal-text {
+            position: absolute;
+            top: 78.5%;
+            left: 68%;
+            font-family: 'Monotype Corsiva', cursive;
+            /* font-size: 12px; */
+            font-size: clamp(7px, 3.1vw, 12px);
+            color: #000000;
+            font-weight: normal;
+            letter-spacing: 0.2px;
+            white-space: nowrap;
+            z-index: 10;
+        }
+
+        .tanda-tangan-img {
+            position: absolute;
+            top: 82%;
+            left: 62%;
+            width: 25%;
+            height: auto;
+            max-height: 10%;
+            object-fit: contain;
+            z-index: 10;
+        }
+
+        .nama-muthowwif-bawah {
+            position: absolute;
+            top: 91.5%;
+            left: 62%;
+            font-family: 'Monotype Corsiva', cursive;
+            /* font-size: 12px; */
+            font-size: clamp(7px, 3.1vw, 12px);
+            color: #000000;
+            font-weight: normal;
+            letter-spacing: 0.2px;
+            white-space: nowrap;
+            z-index: 10;
+        }
+
+        /* ============================================ */
+        /* INPUT PANEL - WHITE THEME                    */
+        /* ============================================ */
+        .input-section {
+            background: var(--primary-white);
+            border-radius: var(--border-radius-lg);
+            padding: 24px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--gray-medium);
+        }
+
+        .input-section h2 {
+            color: var(--secondary-black);
+            font-size: 18px;
+            margin-bottom: 24px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .input-section h2 svg {
+            width: 22px;
+            height: 22px;
+            color: var(--accent-gold);
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--secondary-black);
+            font-size: 13px;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group label svg {
+            width: 16px;
+            height: 16px;
+            color: var(--accent-gold);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1.5px solid var(--gray-medium);
+            border-radius: var(--border-radius);
+            background: var(--primary-white);
+            color: var(--secondary-black);
+            font-size: 14px;
+            transition: all 0.2s ease;
+            font-family: inherit;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+
+        .form-group input::placeholder {
+            color: var(--gray-dark);
+        }
+
+        .form-group select {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23666666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            padding-right: 44px;
+        }
+
+        .date-input-wrapper {
+            position: relative;
+        }
+
+        .date-input-wrapper input {
+            padding-right: 44px;
+        }
+
+        .date-input-wrapper svg {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            color: var(--accent-gold);
+            pointer-events: none;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 28px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 14px 20px;
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            touch-action: manipulation;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .btn-primary {
+            background: var(--accent-gold);
+            color: var(--secondary-black);
+            border: 1px solid var(--accent-gold);
+        }
+
+        .btn-primary:hover {
+            background: #C4A030;
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background: var(--primary-white);
+            color: var(--secondary-black);
+            border: 1.5px solid var(--gray-medium);
+        }
+
+        .btn-secondary:hover {
+            background: var(--gray-light);
+            border-color: var(--gray-dark);
+        }
+
+        .btn-secondary:active {
+            transform: scale(0.98);
+        }
+
+        .download-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .btn-download {
+            flex: 1;
+            padding: 12px 16px;
+            background: var(--secondary-black);
+            color: var(--primary-white);
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .btn-download:hover {
+            background: #333333;
+            transform: translateY(-1px);
+        }
+
+        .btn-download svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* ============================================ */
+        /* INSTRUCTIONS                                 */
+        /* ============================================ */
+        .instructions {
+            margin-top: 24px;
+            padding: 16px;
+            background: var(--gray-light);
+            border-radius: var(--border-radius);
+            border-left: 4px solid var(--accent-gold);
+        }
+
+        .instructions h3 {
+            color: var(--secondary-black);
+            font-size: 13px;
+            margin-bottom: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .instructions h3 svg {
+            width: 18px;
+            height: 18px;
+            color: var(--accent-gold);
+        }
+
+        .instructions ul {
+            color: var(--gray-dark);
+            font-size: 12px;
+            padding-left: 20px;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .instructions li {
+            margin-bottom: 4px;
+        }
+
+        .warning {
+            margin-top: 16px;
+            padding: 12px;
+            background: rgba(212, 175, 55, 0.08);
+            border-radius: var(--border-radius);
+            border: 1px solid var(--accent-gold-light);
+        }
+
+        .warning p {
+            color: var(--secondary-black);
+            font-size: 12px;
+            margin: 0;
+            line-height: 1.5;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .warning svg {
+            width: 18px;
+            height: 18px;
+            color: var(--accent-gold);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* ============================================ */
+        /* TABLET & DESKTOP ADJUSTMENTS                 */
+        /* ============================================ */
+        @media (min-width: 768px) {
+            .main-container {
+                flex-direction: row;
+                max-width: 1200px;
+                padding: 32px;
+                gap: 32px;
+            }
+
+            .certificate-section {
+                flex: 1;
+                order: 2;
+            }
+
+            .input-section {
+                width: 420px;
+                order: 1;
+                position: sticky;
+                top: 88px;
+                max-height: calc(100vh - 120px);
+                overflow-y: auto;
+            }
+
+            .certificate-container {
+                max-width: 450px;
+            }
+            
+            /* Pada desktop, batasi ukuran font sesuai px referensi */
+            .nama-muthowwif-atas,
+            .alamat-muthowwif,
+            .nama-jamaah,
+            .miqot-lokasi {
+                font-size: 13px !important;
+            }
+            .tanggal-text,
+            .nama-muthowwif-bawah {
+                font-size: 12px !important;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .certificate-container {
+                max-width: 500px;
+            }
+        }
+
+        /* ============================================ */
+        /* LOADING STATE                                */
+        /* ============================================ */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.3s ease;
+        }
+
+        .loading.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loading-spinner {
+            width: 44px;
+            height: 44px;
+            border: 3px solid var(--gray-medium);
+            border-top-color: var(--accent-gold);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        .loading p {
+            color: var(--secondary-black);
+            margin-top: 16px;
+            font-size: 14px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* ============================================ */
+        /* CANVAS FOR DOWNLOAD (HIDDEN)                 */
+        /* ============================================ */
+        #render-canvas {
+            display: none;
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading" id="loading">
+        <div class="loading-spinner"></div>
+        <p>Memuat Generator Sertifikat...</p>
+    </div>
+
+    <!-- Hidden Canvas for Rendering -->
+    <canvas id="render-canvas" width="2480" height="3508"></canvas>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <svg class="header-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 12h2l3-9 3 9h2l3-9 3 9h2" stroke-linecap="round"/>
+                <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/>
+                <rect x="9" y="5" width="6" height="4" rx="1"/>
+            </svg>
+            <div class="header-text">
+                <h1>Generator Sertifikat Badal Umroh</h1>
+                <p>Professional Certificate Generator</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <!-- Certificate Preview Section -->
+        <section class="certificate-section">
+            <h2 class="section-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="4" width="20" height="16" rx="2"/>
+                    <path d="M8 12h8M8 16h6"/>
+                </svg>
+                Live Preview
+            </h2>
+            <div class="certificate-wrapper">
+                <div class="certificate-container" id="certificate">
+                    <div class="nama-muthowwif-atas" id="display-nama-muthowwif-atas">Aliyudin, Lc., Dipl</div>
+                    <div class="alamat-muthowwif" id="display-alamat-muthowwif">Kp. Ciapus, Ds. Sukamulya, Kec. Cikupa, Tangerang, Banten.</div>
+                    <div class="nama-jamaah" id="display-nama-jamaah">[Isi Nama Jamaah]</div>
+                    <div class="miqot-lokasi" id="display-miqot">[Isi Tempat Miqot]</div>
+                    <div class="tanggal-text" id="display-tanggal">[Isi Tanggal]</div>
+                    <img class="tanda-tangan-img" id="display-tanda-tangan" src="" alt="Tanda Tangan" style="display: none;">
+                    <div class="nama-muthowwif-bawah" id="display-nama-muthowwif-bawah">Aliyudin, Lc., Dipl</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Input Section -->
+        <section class="input-section">
+            <h2>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                    <circle cx="12" cy="7" r="4"/>
+                </svg>
+                Data Sertifikat
+            </h2>
+
+            <div class="form-group">
+                <label>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                        <circle cx="12" cy="7" r="4"/>
+                    </svg>
+                    Nama Muthowwif
+                </label>
+                <input type="text" id="input-nama-muthowwif" placeholder="Contoh: Aliyudin, Lc., Dipl" value="Aliyudin, Lc., Dipl" autocomplete="name">
+            </div>
+
+            <div class="form-group">
+                <label>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                        <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                    Alamat Muthowwif
+                </label>
+                <textarea id="input-alamat-muthowwif" rows="2" placeholder="Contoh: Kp. Ciapus, Ds. Sukamulya...">Kp. Ciapus, Ds. Sukamulya, Kec. Cikupa, Tangerang, Banten.</textarea>
+            </div>
+
+            <div class="form-group">
+                <label>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                        <circle cx="12" cy="7" r="4"/>
+                    </svg>
+                    Nama yang Diumrohkan
+                </label>
+                <input type="text" id="input-nama-jamaah" placeholder="Masukkan nama jamaah" autocomplete="off">
+            </div>
+
+            <div class="form-group">
+                <label>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 6v6l4 2"/>
+                    </svg>
+                    Tempat Miqot
+                </label>
+                <select id="select-miqot">
+                    <option value="">-- Pilih Tempat Miqot --</option>
+                    <option value="Bir Ali (Dzul Hulaifah)">Bir Ali (Dzul Hulaifah)</option>
+                    <option value="Al-Juhfah">Al-Juhfah</option>
+                    <option value="Qarnul Manazil">Qarnul Manazil</option>
+                    <option value="Yalamlam">Yalamlam</option>
+                    <option value="Dzat Irq">Dzat Irq</option>
+                    <option value="Tan'im">Tan'im</option>
+                    <option value="Ji'ranah">Ji'ranah</option>
+                    <option value="Hudaibiyah">Hudaibiyah</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                        <line x1="16" y1="2" x2="16" y2="6"/>
+                        <line x1="8" y1="2" x2="8" y2="6"/>
+                        <line x1="3" y1="10" x2="21" y2="10"/>
+                    </svg>
+                    Tanggal
+                </label>
+                <div class="date-input-wrapper">
+                    <input type="date" id="input-tanggal">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                        <line x1="16" y1="2" x2="16" y2="6"/>
+                        <line x1="8" y1="2" x2="8" y2="6"/>
+                        <line x1="3" y1="10" x2="21" y2="10"/>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 12H4M12 4v16"/>
+                    </svg>
+                    Tanda Tangan
+                </label>
+                <select id="select-tanda-tangan">
+                    <option value="">-- Pilih Tanda Tangan --</option>
+                    <option value="https://i.ibb.co/9khd0Cgh/Picsart-26-01-13-20-02-47-717.png">Signature Elegant</option>
+                    <option value="https://i.ibb.co/9khd0Cgh/Picsart-26-01-13-20-02-47-717.png">Signature Classic</option>
+                </select>
+            </div>
+
+            <!-- Download Buttons -->
+            <div class="download-group">
+                <button class="btn-download" onclick="downloadAsPNG()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="2" width="20" height="20" rx="2.18"/>
+                        <path d="M7 2v20M17 2v20M2 12h20M2 7h5M2 17h5M17 17h5M17 7h5"/>
+                    </svg>
+                    Download PNG
+                </button>
+                <button class="btn-download" onclick="downloadAsPDF()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14 2 14 8 20 8"/>
+                        <line x1="16" y1="13" x2="8" y2="13"/>
+                        <line x1="16" y1="17" x2="8" y2="17"/>
+                        <polyline points="10 9 9 9 8 9"/>
+                    </svg>
+                    Download PDF
+                </button>
+            </div>
+
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="resetForm()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+                        <path d="M3 3v5h5"/>
+                    </svg>
+                    Reset
+                </button>
+            </div>
+
+            <div class="instructions">
+                <h3>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 16v-4M12 8h.01"/>
+                    </svg>
+                    Petunjuk Penggunaan
+                </h3>
+                <ul>
+                    <li>Tempatkan file <strong>monotype-corsiva.ttf</strong> di folder yang sama</li>
+                    <li>Pilih tanggal spesifik dari kalender, format akan otomatis: "12 Desember 2026"</li>
+                    <li>Download dalam format PNG atau PDF (1 halaman A4)</li>
+                    <li>Edit posisi teks dengan mengubah nilai top/left di CSS</li>
+                </ul>
+            </div>
+
+            <div class="warning">
+                <p>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        <path d="M12 8v4M12 16h.01"/>
+                    </svg>
+                    <span>Gunakan gambar sertifikat resolusi tinggi (minimal 2480x3508px) untuk hasil cetak terbaik. Download langsung tanpa preview halaman cetak.</span>
+                </p>
+            </div>
+        </section>
+    </div>
+
+    <!-- External Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>
+        // ============================================
+        // LOADING HANDLER
+        // ============================================
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('loading').classList.add('hidden');
+            }, 500);
+        });
+
+        // ============================================
+        // DOM ELEMENTS
+        // ============================================
+        const inputNamaMuthowwif = document.getElementById('input-nama-muthowwif');
+        const inputAlamatMuthowwif = document.getElementById('input-alamat-muthowwif');
+        const inputNamaJamaah = document.getElementById('input-nama-jamaah');
+        const selectMiqot = document.getElementById('select-miqot');
+        const inputTanggal = document.getElementById('input-tanggal');
+        const selectTandaTangan = document.getElementById('select-tanda-tangan');
+
+        const displayNamaMuthowwifAtas = document.getElementById('display-nama-muthowwif-atas');
+        const displayAlamatMuthowwif = document.getElementById('display-alamat-muthowwif');
+        const displayNamaJamaah = document.getElementById('display-nama-jamaah');
+        const displayMiqot = document.getElementById('display-miqot');
+        const displayTanggal = document.getElementById('display-tanggal');
+        const displayTandaTangan = document.getElementById('display-tanda-tangan');
+        const displayNamaMuthowwifBawah = document.getElementById('display-nama-muthowwif-bawah');
+
+        // Canvas for rendering
+        const canvas = document.getElementById('render-canvas');
+        const ctx = canvas.getContext('2d');
+
+        // ============================================
+        // BULAN INDONESIA
+        // ============================================
+        const bulanIndonesia = [
+            'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+            'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+        ];
+
+        // ============================================
+        // FORMAT TANGGAL DARI DATE INPUT
+        // ============================================
+        function formatTanggalIndonesia(dateString) {
+            if (!dateString) return '[Isi Tanggal]';
+            
+            const date = new Date(dateString);
+            const tanggal = date.getDate();
+            const bulan = bulanIndonesia[date.getMonth()];
+            const tahun = date.getFullYear();
+            
+            return `${tanggal} ${bulan} ${tahun}`;
+        }
+
+        // ============================================
+        // UPDATE FUNCTIONS
+        // ============================================
+        function updateNamaMuthowwif() {
+            const value = inputNamaMuthowwif.value || '[Nama Muthowwif]';
+            displayNamaMuthowwifAtas.textContent = value;
+            displayNamaMuthowwifBawah.textContent = value;
+        }
+
+        function updateAlamatMuthowwif() {
+            displayAlamatMuthowwif.textContent = inputAlamatMuthowwif.value || '[Alamat Muthowwif]';
+        }
+
+        function updateNamaJamaah() {
+            displayNamaJamaah.textContent = inputNamaJamaah.value || '[Isi Nama Jamaah]';
+        }
+
+        function updateMiqot() {
+            displayMiqot.textContent = selectMiqot.value || '[Isi Tempat Miqot]';
+        }
+
+        function updateTanggal() {
+            displayTanggal.textContent = formatTanggalIndonesia(inputTanggal.value);
+        }
+
+        function updateTandaTangan() {
+            const url = selectTandaTangan.value;
+            if (url) {
+                displayTandaTangan.src = url;
+                displayTandaTangan.style.display = 'block';
+                displayTandaTangan.onerror = function() {
+                    this.style.display = 'none';
+                };
+            } else {
+                displayTandaTangan.style.display = 'none';
+                displayTandaTangan.src = '';
+            }
+        }
+
+        // Event listeners
+        inputNamaMuthowwif.addEventListener('input', updateNamaMuthowwif);
+        inputAlamatMuthowwif.addEventListener('input', updateAlamatMuthowwif);
+        inputNamaJamaah.addEventListener('input', updateNamaJamaah);
+        selectMiqot.addEventListener('change', updateMiqot);
+        inputTanggal.addEventListener('change', updateTanggal);
+        selectTandaTangan.addEventListener('change', updateTandaTangan);
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            updateNamaMuthowwif();
+            updateAlamatMuthowwif();
+            updateNamaJamaah();
+            updateMiqot();
+            updateTanggal();
+        });
+
+        // ============================================
+        // RESET FUNCTION
+        // ============================================
+        function resetForm() {
+            inputNamaMuthowwif.value = 'Aliyudin, Lc., Dipl';
+            inputAlamatMuthowwif.value = 'Kp. Ciapus, Ds. Sukamulya, Kec. Cikupa, Tangerang, Banten.';
+            inputNamaJamaah.value = '';
+            selectMiqot.value = '';
+            inputTanggal.value = '';
+            selectTandaTangan.value = '';
+
+            updateNamaMuthowwif();
+            updateAlamatMuthowwif();
+            updateNamaJamaah();
+            updateMiqot();
+            updateTanggal();
+            updateTandaTangan();
+        }
+
+        // ============================================
+        // RENDER TO CANVAS (A4: 2480x3508 @ 300 DPI)
+        // ============================================
+        async function renderToCanvas() {
+            const bgImage = new Image();
+            bgImage.crossOrigin = 'Anonymous';
+            
+            await new Promise((resolve, reject) => {
+                bgImage.onload = resolve;
+                bgImage.onerror = reject;
+                bgImage.src = 'https://i.ibb.co/93m9k9Bq/Sertif-umroh.png';
+            });
+
+            // Set canvas size to A4 @ 300 DPI
+            canvas.width = 2480;
+            canvas.height = 3508;
+
+            // Draw background
+            ctx.drawImage(bgImage, 0, 0, canvas.width, canvas.height);
+
+            // --- PERBAIKAN UTAMA: KOORDINAT RENDER DISESUAIKAN DENGAN POSISI ABSOLUT CSS ---
+            // Menggunakan persentase yang sama dengan CSS untuk akurasi posisi
+            
+            // Fungsi helper untuk konversi persen ke pixel canvas
+            const pX = (percent) => (percent / 100) * canvas.width;
+            const pY = (percent) => (percent / 100) * canvas.height;
+            
+            // Set properti dasar text
+            ctx.fillStyle = '#000000';
+            ctx.textBaseline = 'alphabetic';
+
+            // 1. Nama Muthowwif Atas (top: 42.7%, left: 25%)
+            ctx.font = `400 ${pX(2.6)}px 'Monotype Corsiva', cursive`; // ~13px pada 380px lebar -> 3.4%
+            ctx.fillText(displayNamaMuthowwifAtas.textContent, pX(25), pY(44));
+
+            // 2. Alamat Muthowwif (top: 44.8%, left: 25%)
+            ctx.font = `400 ${pX(2.6)}px 'Monotype Corsiva', cursive`;
+            ctx.fillText(displayAlamatMuthowwif.textContent, pX(25), pY(46.2));
+
+            // 3. Nama Jamaah (top: 62%, left: 29.4%)
+            ctx.font = `400 ${pX(2.6)}px 'Monotype Corsiva', cursive`;
+            ctx.fillText(displayNamaJamaah.textContent, pX(29.4), pY(63.2));
+
+            // 4. Miqot (top: 66.5%, left: 29.4%)
+            ctx.font = `400 ${pX(2.6)}px 'Monotype Corsiva', cursive`;
+            ctx.fillText(displayMiqot.textContent, pX(29.4), pY(67.93));
+
+            // 5. Tanggal (top: 78.5%, left: 68%)
+            ctx.font = `400 ${pX(2.3)}px 'Monotype Corsiva', cursive`; // ~12px -> 3.1%
+            ctx.fillText(displayTanggal.textContent, pX(68), pY(79.9));
+
+            // 6. Tanda Tangan (top: 82%, left: 62%, width: 25%)
+            if (displayTandaTangan.style.display !== 'none' && displayTandaTangan.src) {
+                const signatureImg = new Image();
+                signatureImg.crossOrigin = 'Anonymous';
+                
+                await new Promise((resolve, reject) => {
+                    signatureImg.onload = resolve;
+                    signatureImg.onerror = reject;
+                    signatureImg.src = displayTandaTangan.src;
+                });
+
+                const sigWidth = pX(19);
+                const sigHeight = (signatureImg.height / signatureImg.width) * sigWidth;
+                ctx.drawImage(
+                    signatureImg,
+                    pX(62),
+                    pY(82),
+                    sigWidth,
+                    sigHeight
+                );
+            }
+
+            // 7. Nama Muthowwif Bawah (top: 91.5%, left: 62%)
+            ctx.font = `400 ${pX(2.3)}px 'Monotype Corsiva', cursive`;
+            ctx.fillText(displayNamaMuthowwifBawah.textContent, pX(62), pY(92.5));
+        }
+
+        // ============================================
+        // DOWNLOAD AS PNG
+        // ============================================
+        async function downloadAsPNG() {
+            const loading = document.getElementById('loading');
+            loading.classList.remove('hidden');
+            loading.querySelector('p').textContent = 'Membuat PNG...';
+
+            try {
+                await renderToCanvas();
+                
+                const link = document.createElement('a');
+                link.download = `Sertifikat-Badal-Umroh-${displayNamaJamaah.textContent.replace(/[^a-z0-9]/gi, '_')}.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            } catch (error) {
+                console.error('Error rendering PNG:', error);
+                alert('Gagal membuat PNG. Periksa koneksi internet dan coba lagi.');
+            } finally {
+                loading.classList.add('hidden');
+            }
+        }
+
+        // ============================================
+        // DOWNLOAD AS PDF (A4, 1 Halaman)
+        // ============================================
+        async function downloadAsPDF() {
+            const loading = document.getElementById('loading');
+            loading.classList.remove('hidden');
+            loading.querySelector('p').textContent = 'Membuat PDF...';
+
+            try {
+                await renderToCanvas();
+                
+                const { jsPDF } = window.jspdf;
+                
+                // Create PDF with A4 size in mm
+                const pdf = new jsPDF({
+                    orientation: 'portrait',
+                    unit: 'mm',
+                    format: 'a4'
+                });
+
+                // Canvas to image data
+                const imgData = canvas.toDataURL('image/jpeg', 0.95);
+                
+                // Add image to PDF (A4 = 210mm x 297mm)
+                pdf.addImage(imgData, 'JPEG', 0, 0, 210, 297);
+                
+                // Download PDF
+                pdf.save(`Sertifikat-Badal-Umroh-${displayNamaJamaah.textContent.replace(/[^a-z0-9]/gi, '_')}.pdf`);
+            } catch (error) {
+                console.error('Error rendering PDF:', error);
+                alert('Gagal membuat PDF. Periksa koneksi internet dan coba lagi.');
+            } finally {
+                loading.classList.add('hidden');
+            }
+        }
+
+        // ============================================
+        // KEYBOARD SHORTCUTS
+        // ============================================
+        document.addEventListener('keydown', function(e) {
+            if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+                e.preventDefault();
+                downloadAsPNG();
+            }
+        });
+    </script>
+</body>
+</html>
