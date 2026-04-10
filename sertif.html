@@ -1209,7 +1209,7 @@
     </div>
 
     <!-- Hidden Canvas for Rendering -->
-    <canvas id="render-canvas" width="2480" height="3508"></canvas>
+    <canvas id="render-canvas" width="4960" height="7016"></canvas>
 
     <!-- Preview Modal -->
     <div class="modal" id="preview-modal">
@@ -1392,8 +1392,8 @@
                     </label>
                     <select id="select-tanda-tangan">
                         <option value="">-- Pilih Tanda Tangan --</option>
-                        <option value="https://i.ibb.co/HpXTfTcf/ttd-ka-ali-2x.png">TTD Aliyudin</option>
-                        <option value="https://i.ibb.co/9khd0Cgh/Picsart-26-01-13-20-02-47-717.png">TTD Rizki Nur Amaludin</option>
+                        <option value="ttd-aliyudin">TTD Aliyudin</option>
+                        <option value="ttd-rizki">TTD Rizki Nur Amaludin</option>
                     </select>
                 </div>
 
@@ -2589,40 +2589,49 @@
             const data = getDataValues();
             
             const bgImage = new Image();
-            bgImage.crossOrigin = 'Anonymous';
             
             await new Promise((resolve, reject) => {
                 bgImage.onload = resolve;
-                bgImage.onerror = reject;
-                bgImage.src = 'https://i.ibb.co/j9NJwD5H/Sertif-umroh.png';
+                bgImage.onerror = () => {
+                    console.error('Gagal load background dari assets/sertif-umroh.png');
+                    reject(new Error('Background image not found'));
+                };
+                bgImage.src = 'assets/sertif-umroh.png';
             });
 
             const canvas = document.getElementById('render-canvas');
             const ctx = canvas.getContext('2d');
             
-            canvas.width = 2480;
-            canvas.height = 3508;
-
+            // SET ke 600 DPI (4960x7016) - SAMA DENGAN RESOLUSI GAMBAR ASLI
+            canvas.width = bgImage.width;   // Gunakan lebar gambar asli
+            canvas.height = bgImage.height; // Gunakan tinggi gambar asli
+            
+            console.log(`Canvas size: ${canvas.width} x ${canvas.height}`);
+            
+            // Gambar background (tanpa resize/stretch)
             ctx.drawImage(bgImage, 0, 0, canvas.width, canvas.height);
 
+            // Fungsi konversi persentase ke pixel (tetap proporsional)
             const pX = (percent) => (percent / 100) * canvas.width;
             const pY = (percent) => (percent / 100) * canvas.height;
             
             ctx.fillStyle = '#000000';
             ctx.textBaseline = 'alphabetic';
 
-            const fontFamily = monotypeFontLoaded ? "'Monotype Corsiva', cursive" : "cursive, 'Segoe Script', 'Brush Script MT'";
-
-            ctx.font = `400 ${pX(2.6)}px ${fontFamily}`;
+            const fontFamily = monotypeFontLoaded ? "'Monotype Corsiva', cursive" : "cursive";
+            
+            // Ukuran font 2.6% dari lebar canvas (otomatis membesar di 600 DPI)
+            const baseFontSize = pX(2.6);
+            ctx.font = `400 ${baseFontSize}px ${fontFamily}`;
             ctx.fillText(data.namaMuthowwif, pX(25), pY(44));
 
-            ctx.font = `400 ${pX(2.6)}px ${fontFamily}`;
+            ctx.font = `400 ${baseFontSize}px ${fontFamily}`;
             ctx.fillText(data.alamatMuthowwif, pX(25), pY(46.2));
 
-            ctx.font = `400 ${pX(2.6)}px ${fontFamily}`;
+            ctx.font = `400 ${baseFontSize}px ${fontFamily}`;
             ctx.fillText(data.namaJamaah, pX(29.4), pY(63.2));
 
-            ctx.font = `400 ${pX(2.6)}px ${fontFamily}`;
+            ctx.font = `400 ${baseFontSize}px ${fontFamily}`;
             ctx.fillText(data.miqot, pX(29.4), pY(67.93));
 
             ctx.font = `400 ${pX(2.3)}px ${fontFamily}`;
@@ -2630,12 +2639,20 @@
 
             if (data.tandaTangan) {
                 const signatureImg = new Image();
-                signatureImg.crossOrigin = 'Anonymous';
                 
                 await new Promise((resolve, reject) => {
                     signatureImg.onload = resolve;
-                    signatureImg.onerror = reject;
-                    signatureImg.src = data.tandaTangan;
+                    signatureImg.onerror = () => {
+                        console.error('Gagal load tanda tangan:', data.tandaTangan);
+                        reject(new Error('Signature image not found'));
+                    };
+                    if (data.tandaTangan === 'ttd-aliyudin') {
+                        signatureImg.src = 'assets/ttd-aliyudin.png';
+                    } else if (data.tandaTangan === 'ttd-rizki') {
+                        signatureImg.src = 'assets/ttd-rizki.png';
+                    } else {
+                        signatureImg.src = data.tandaTangan;
+                    }
                 });
 
                 const sigWidth = pX(19);
@@ -2655,13 +2672,21 @@
             
             const loading = document.getElementById('loading');
             loading.classList.remove('hidden');
-            loading.querySelector('p').textContent = 'Menyiapkan preview...';
+            
+            if (type === 'pdf') {
+                loading.querySelector('p').textContent = 'Menyiapkan PDF untuk cetak fisik (target < 10 MB)...';
+            } else {
+                loading.querySelector('p').textContent = 'Menyiapkan preview PNG...';
+            }
 
             try {
                 await renderToCanvas();
                 
                 currentDownloadType = type;
                 const canvas = document.getElementById('render-canvas');
+                
+                // Untuk PDF, kita tetap simpan PNG asli untuk preview
+                // Tapi nanti saat download PDF akan dikompres optimal
                 currentImageData = canvas.toDataURL('image/png');
                 
                 document.getElementById('preview-image').src = currentImageData;
@@ -2700,13 +2725,30 @@
                 return;
             }
             
-            const data = getDataValues();
-            const link = document.createElement('a');
-            link.download = `Sertifikat-Badal-Umroh-${data.namaJamaah.replace(/[^a-z0-9]/gi, '_')}.png`;
-            link.href = currentImageData;
-            link.click();
+            const loading = document.getElementById('loading');
+            loading.classList.remove('hidden');
+            loading.querySelector('p').textContent = 'Menyimpan PNG asli (tanpa kompresi)...';
             
-            closePreviewModal();
+            try {
+                const data = getDataValues();
+                const link = document.createElement('a');
+                link.download = `Sertifikat-Umroh-${data.namaJamaah.replace(/[^a-z0-9]/gi, '_')}.png`;
+                
+                // Gunakan PNG asli (tanpa kompresi)
+                link.href = currentImageData;
+                link.click();
+                
+                // Hitung ukuran file
+                const sizeMB = (currentImageData.length / 1024 / 1024).toFixed(2);
+                console.log(`✅ PNG siap cetak! Ukuran: ${sizeMB} MB (lossless, 600 DPI)`);
+                
+                closePreviewModal();
+            } catch (error) {
+                console.error('Error saving PNG:', error);
+                alert('Gagal menyimpan PNG.');
+            } finally {
+                loading.classList.add('hidden');
+            }
         }
 
         async function confirmDownloadPDF() {
@@ -2717,29 +2759,39 @@
             
             const loading = document.getElementById('loading');
             loading.classList.remove('hidden');
-            loading.querySelector('p').textContent = 'Membuat PDF...';
+            loading.querySelector('p').textContent = 'Membuat PDF 600 DPI untuk cetak...';
 
             try {
                 const { jsPDF } = window.jspdf;
                 
+                // Gunakan unit pixels untuk mempertahankan resolusi
                 const pdf = new jsPDF({
                     orientation: 'portrait',
-                    unit: 'mm',
-                    format: 'a4'
+                    unit: 'px',
+                    format: [4960, 7016],  // 600 DPI A4
+                    compress: false  // NO COMPRESSION - kualitas maksimal
                 });
 
                 const canvas = document.getElementById('render-canvas');
-                const imgData = canvas.toDataURL('image/jpeg', 1.0);
                 
-                pdf.addImage(imgData, 'JPEG', 0, 0, 210, 297);
+                // Gunakan PNG (lossless) untuk kualitas cetak maksimal
+                const imgData = canvas.toDataURL('image/png');
+                
+                // Tambahkan image ke PDF dengan ukuran asli
+                pdf.addImage(imgData, 'PNG', 0, 0, 4960, 7016, undefined, 'FAST');
                 
                 const data = getDataValues();
-                pdf.save(`Sertifikat-Badal-Umroh-${data.namaJamaah.replace(/[^a-z0-9]/gi, '_')}.pdf`);
+                const fileName = `Sertifikat-Umroh-${data.namaJamaah.replace(/[^a-z0-9]/gi, '_')}.pdf`;
+                pdf.save(fileName);
+                
+                // Hitung dan tampilkan ukuran file
+                const sizeMB = (imgData.length / 1024 / 1024).toFixed(2);
+                console.log(`✅ PDF siap cetak! Ukuran: ${sizeMB} MB (600 DPI, lossless)`);
                 
                 closePreviewModal();
             } catch (error) {
                 console.error('Error rendering PDF:', error);
-                alert('Gagal membuat PDF. Periksa koneksi internet dan coba lagi.');
+                alert('Gagal membuat PDF. Coba lagi.');
             } finally {
                 loading.classList.add('hidden');
             }
